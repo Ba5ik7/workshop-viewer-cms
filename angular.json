@@ -23,6 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "/admin/",
             "outputPath": "dist/workshop-viewer-cms",
             "index": "src/index.html",
             "main": "src/main.ts",
