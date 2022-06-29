@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NavbarComponent } from './navbar.component';
 import { ThemePickerModule } from '../theme-picker/theme-picker.module';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     ThemePickerModule,
     MatButtonModule,
     MatIconModule
