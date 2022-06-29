@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 import { NavbarComponent } from './navbar.component';
 
 
@@ -9,7 +10,8 @@ import { NavbarComponent } from './navbar.component';
     NavbarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatIconModule
   ],
   exports: [NavbarComponent]
 })
