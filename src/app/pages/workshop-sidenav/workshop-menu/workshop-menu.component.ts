@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { DeleteSectionModalComponent } from './delete-section-modal/delete-section-modal.component';
 
 @Component({
   selector: 'workshop-menu',
@@ -16,6 +17,6 @@ export class WorkshopMenuComponent implements OnInit {
   ngOnInit(): void { }
 
   deleteSection(navItem: any): void {
-    console.log(navItem);    
+    this.matDialog.open(DeleteSectionModalComponent, { width: '300px', data: { navItem  }});
   }
 }
