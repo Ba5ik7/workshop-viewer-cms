@@ -16,7 +16,10 @@ export class WorkshopSidenavComponent implements OnDestroy {
   isScreenSmall: Observable<boolean>;
   destory: Subject<boolean> = new Subject();
 
-  navList = [{ name: 'Dashboard', id: 'dashboard' }];
+  navList = [
+    { name: 'Dashboard', id: 'dashboard' },
+    { name: 'Users', id: 'users' }
+  ];
   section = 'Something';
 
   constructor(breakpoints: BreakpointObserver) {
