@@ -5,6 +5,8 @@
           [routerLink]="'/' + navItem.id"
           routerLinkActive="workshop-menu-nav-item-selected">
         {{navItem.name}}
+        <div class="flex-spacer"></div>
+        <mat-icon class="delete-section-icon" (click)="deleteSection(navItem)">delete</mat-icon>
       </a>
     </mat-nav-list>
   </div>
