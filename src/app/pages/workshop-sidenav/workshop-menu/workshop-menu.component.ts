@@ -17,6 +17,6 @@ export class WorkshopMenuComponent implements OnInit {
   ngOnInit(): void { }
 
   deleteSection(navItem: any): void {
-    this.matDialog.open(DeleteSectionModalComponent, { width: '300px', data: { navItem  }});
+    this.matDialog.open(DeleteSectionModalComponent, { width: '400px', data: { navItem  }});
   }
 }

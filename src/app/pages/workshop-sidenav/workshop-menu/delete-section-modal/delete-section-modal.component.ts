@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-delete-section-modal',
@@ -8,9 +9,16 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class DeleteSectionModalComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: { navItem: any },
+    private dialogRef: MatDialogRef<DeleteSectionModalComponent>
+    ) { }
 
   ngOnInit(): void {
   }
 
+  deleteSection() {
+    console.log(this.data);
+    this.dialogRef.close();
+  }
 }

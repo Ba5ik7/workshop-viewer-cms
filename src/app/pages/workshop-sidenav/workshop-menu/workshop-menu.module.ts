@@ -7,6 +7,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { DeleteSectionModalComponent } from './delete-section-modal/delete-section-modal.component';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -16,6 +17,7 @@ import { DeleteSectionModalComponent } from './delete-section-modal/delete-secti
   imports: [
     CommonModule,
     RouterModule,
+    MatButtonModule,
     MatListModule,
     MatIconModule,
     MatDialogModule
