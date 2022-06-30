@@ -1,9 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { ActivatedRoute } from '@angular/router';
-import { distinct, map, Observable, Subject, takeUntil } from 'rxjs';
-import { NavigationService } from '../../shared/services/navigation/navigation.service';
+import { map, Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'workshop-sidenav',
@@ -18,28 +16,13 @@ export class WorkshopSidenavComponent implements OnDestroy {
   isScreenSmall: Observable<boolean>;
   destory: Subject<boolean> = new Subject();
 
-  section!: Observable<string>;
-  sectionTitle!: Observable<string>;
-  categoryTitle!: Observable<string>;
-  headerSvgPath!: Observable<string>;
-  navList!: Observable<any[]>;
+  navList = [{ name: 'Dashboard', id: 'dashboard' }];
+  section = 'Something';
 
-  constructor(breakpoints: BreakpointObserver,
-              activatedRoute: ActivatedRoute,
-              navigationService: NavigationService) {
+  constructor(breakpoints: BreakpointObserver) {
 
     this.isScreenSmall = breakpoints.observe(`(max-width: 959px)`)
     .pipe(takeUntil(this.destory), map(breakpoint => breakpoint.matches));
-
-    activatedRoute.params
-    .pipe(takeUntil(this.destory), distinct())
-    .subscribe(params => navigationService.sectionRouteSub.next(params['section']));
-
-    this.section = navigationService.sectionRoute$;
-    this.navList = navigationService.sectionNavList$;
-    this.sectionTitle = navigationService.sectionTitle$;
-    this.headerSvgPath = navigationService.headerSvgPath$;
-    this.categoryTitle = navigationService.categoryTitle$;
   }
 
   ngOnDestroy(): void {
