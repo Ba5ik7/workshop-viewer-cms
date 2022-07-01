@@ -8,7 +8,7 @@
           routerLinkActive="workshop-menu-nav-item-selected">
         {{navItem.value.sectionTitle}}
         <div class="flex-spacer"></div>
-        <mat-icon class="delete-section-icon" (click)="deleteSection(navItem)">delete</mat-icon>
+        <mat-icon class="delete-section-icon" (click)="deleteSection($event, navItem.value)">delete</mat-icon>
       </a>
       <a mat-list-item routerLinkActive="workshop-menu-nav-item-selected" (click)="createSection()">Create Section
         <div class="flex-spacer"></div>

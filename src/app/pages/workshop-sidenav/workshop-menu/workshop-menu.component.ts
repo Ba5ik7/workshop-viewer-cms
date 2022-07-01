@@ -17,7 +17,10 @@ export class WorkshopMenuComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  deleteSection(navItem: any): void {
+  deleteSection(event: Event, navItem: any): void {
+    event.preventDefault();
+    // EDIT: Looks like you also have to include Event#stopImmediatePropagation as well
+    event.stopImmediatePropagation();
     this.matDialog.open(DeleteSectionModalComponent, { width: '400px', data: { navItem }});
   }
 
