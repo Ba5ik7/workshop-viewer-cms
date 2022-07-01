@@ -1,0 +1,12 @@
+:host {
+  grid-template-columns: calc(100vw - 600px) auto;
+  display: grid;
+}
+
+.workshop-control {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: calc(100vh - 56px);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
