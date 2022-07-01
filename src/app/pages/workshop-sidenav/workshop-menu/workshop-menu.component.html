@@ -10,7 +10,7 @@
         <div class="flex-spacer"></div>
         <mat-icon *ngIf="navItem.canDelete" class="delete-section-icon" (click)="deleteSection(navItem)">delete</mat-icon>
       </a>
-      <a mat-list-item routerLinkActive="workshop-menu-nav-item-selected">Create Section
+      <a mat-list-item routerLinkActive="workshop-menu-nav-item-selected" (click)="createSection()">Create Section
         <div class="flex-spacer"></div>
         <mat-icon class="create-section-icon">note_add</mat-icon>
       </a>

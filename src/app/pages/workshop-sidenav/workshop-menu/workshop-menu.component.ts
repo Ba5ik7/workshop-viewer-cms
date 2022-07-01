@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CreateSectionModalComponent } from './create-section-modal/create-section-modal.component';
 import { DeleteSectionModalComponent } from './delete-section-modal/delete-section-modal.component';
 
 @Component({
@@ -17,6 +18,10 @@ export class WorkshopMenuComponent implements OnInit {
   ngOnInit(): void { }
 
   deleteSection(navItem: any): void {
-    this.matDialog.open(DeleteSectionModalComponent, { width: '400px', data: { navItem  }});
+    this.matDialog.open(DeleteSectionModalComponent, { width: '400px', data: { navItem }});
+  }
+
+  createSection(): void {
+    this.matDialog.open(CreateSectionModalComponent, { width: '500px' });
   }
 }

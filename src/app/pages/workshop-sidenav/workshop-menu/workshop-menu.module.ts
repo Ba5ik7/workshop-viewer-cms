@@ -6,14 +6,16 @@ import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { DeleteSectionModalComponent } from './delete-section-modal/delete-section-modal.component';
 import { MatButtonModule } from '@angular/material/button';
+
+import { CreateSectionModalComponent } from './create-section-modal/create-section-modal.component';
+import { DeleteSectionModalComponent } from './delete-section-modal/delete-section-modal.component';
 
 
 
 @NgModule({
-  declarations: [WorkshopMenuComponent, DeleteSectionModalComponent],
-  exports: [WorkshopMenuComponent, DeleteSectionModalComponent],
+  declarations: [WorkshopMenuComponent, DeleteSectionModalComponent, CreateSectionModalComponent],
+  exports: [WorkshopMenuComponent],
   imports: [
     CommonModule,
     RouterModule,
