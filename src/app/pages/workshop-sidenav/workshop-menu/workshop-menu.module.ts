@@ -7,22 +7,31 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { CreateSectionModalComponent } from './create-section-modal/create-section-modal.component';
 import { DeleteSectionModalComponent } from './delete-section-modal/delete-section-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [WorkshopMenuComponent, DeleteSectionModalComponent, CreateSectionModalComponent],
+  providers: [
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }
+  ],
   exports: [WorkshopMenuComponent],
   imports: [
     CommonModule,
     RouterModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatListModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class WorkshopMenuModule { }
