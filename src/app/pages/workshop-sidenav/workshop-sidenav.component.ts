@@ -2,6 +2,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { map, Observable, Subject, takeUntil } from 'rxjs';
+import { NavigationService } from 'src/app/shared/services/navigation/navigation.service';
 
 @Component({
   selector: 'workshop-sidenav',
@@ -16,13 +17,15 @@ export class WorkshopSidenavComponent implements OnDestroy {
   isScreenSmall: Observable<boolean>;
   destory: Subject<boolean> = new Subject();
 
-  navList = [];
+  navList!: Observable<any[]>;
   section = 'Something';
 
-  constructor(breakpoints: BreakpointObserver) {
+  constructor(breakpoints: BreakpointObserver, navigationService: NavigationService) {
 
     this.isScreenSmall = breakpoints.observe(`(max-width: 959px)`)
     .pipe(takeUntil(this.destory), map(breakpoint => breakpoint.matches));
+
+    this.navList = navigationService.sections$;
   }
 
   ngOnDestroy(): void {
