@@ -7,14 +7,18 @@ const routes: Routes = [
     path: '',
     component: WorkshopSidenavComponent,
     children: [
-    {
-      path: 'dashboard',
-      loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule)
-    },
-    {
-      path: 'users',
-      loadChildren: () => import('../users/users.module').then(m => m.UsersModule)
-    },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule)
+      },
+      {
+        path: 'users',
+        loadChildren: () => import('../users/users.module').then(m => m.UsersModule)
+      },
+      {
+        path: 'workshop-editor',
+        loadChildren: () => import('../workshop-editor/workshop-editor.module').then(m => m.WorkshopEditorModule)
+      }
     ]
   }
 ];
