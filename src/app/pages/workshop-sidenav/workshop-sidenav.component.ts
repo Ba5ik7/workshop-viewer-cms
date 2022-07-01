@@ -17,8 +17,8 @@ export class WorkshopSidenavComponent implements OnDestroy {
   destory: Subject<boolean> = new Subject();
 
   navList = [
-    { name: 'Dashboard', id: 'dashboard' },
-    { name: 'Users', id: 'users' }
+    { name: 'Dashboard', id: 'dashboard', canDelete: false },
+    { name: 'Users', id: 'users', canDelete: false }
   ];
   section = 'Something';
 
