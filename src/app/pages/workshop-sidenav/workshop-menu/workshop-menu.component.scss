@@ -1,5 +1,12 @@
 :host {
-  a .delete-section-icon {
-    color: red;
+  a {
+    .delete-section-icon {
+      color: red;
+    }
+    .create-section-icon {
+      color: green;
+    }
   }
+
+
 }
