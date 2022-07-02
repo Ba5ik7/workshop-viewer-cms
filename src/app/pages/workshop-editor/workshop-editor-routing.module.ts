@@ -4,7 +4,7 @@ import { WorkshopEditorComponent } from './workshop-editor.component';
 
 const routes: Routes = [
   {
-    path: ':categoryId',
+    path: ':section',
     component: WorkshopEditorComponent
   }
 ];

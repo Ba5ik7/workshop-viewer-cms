@@ -10,8 +10,7 @@ import { DeleteSectionModalComponent } from './delete-section-modal/delete-secti
 })
 export class WorkshopMenuComponent implements OnInit {
 
-  @Input() navList!: any[] | null;
-  @Input() section!: string | null;
+  @Input() sections!: any[] | null;
 
   constructor(public matDialog: MatDialog) { }
 

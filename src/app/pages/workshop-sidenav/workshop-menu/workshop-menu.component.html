@@ -3,7 +3,7 @@
     <mat-nav-list>
       <a mat-list-item routerLink="dashboard" routerLinkActive="workshop-menu-nav-item-selected">Dashboard</a>
       <a mat-list-item routerLink="users" routerLinkActive="workshop-menu-nav-item-selected">Users</a>
-      <a mat-list-item *ngFor="let navItem of navList | keyvalue"
+      <a mat-list-item *ngFor="let navItem of sections | keyvalue"
           [routerLink]="'workshop-editor/' + navItem.value._id"
           routerLinkActive="workshop-menu-nav-item-selected">
         {{navItem.value.sectionTitle}}

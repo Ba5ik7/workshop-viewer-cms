@@ -1,14 +1,12 @@
 <mat-sidenav-container class="workshop-sidenav-container">
   <div class="workshop-sidenav-content">
     <header class="primary-header workshop-page-header">
-      <img class="workshop-page-header-section-img" src="/admin/assets/img/angular.svg">
-      <h1>Some Section Title : Some Category Title</h1>
+      <img class="workshop-page-header-section-img" [src]="headerSvgPath | async">
+      <h1>{{sectionTitle | async}}: {{categoryTitle | async}}</h1>
     </header>
     <div class="workshop-sidenav-inner-content">
       <main class="workshop-sidenav-body-content">
-        <workshop-menu
-          [navList]="navList | async"
-          [section]="section"></workshop-menu>
+        <workshop-menu [sections]="sections | async"></workshop-menu>
         <router-outlet></router-outlet>
       </main>
       <app-footer></app-footer>

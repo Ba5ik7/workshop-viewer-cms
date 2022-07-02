@@ -1,5 +1,5 @@
-import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { map, Observable, Subject, takeUntil } from 'rxjs';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { Observable } from 'rxjs';
 import { NavigationService } from 'src/app/shared/services/navigation/navigation.service';
 
 @Component({
@@ -8,18 +8,18 @@ import { NavigationService } from 'src/app/shared/services/navigation/navigation
   styleUrls: ['./workshop-sidenav.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WorkshopSidenavComponent implements OnDestroy {
+export class WorkshopSidenavComponent {
 
-  destory: Subject<boolean> = new Subject();
+  sections!: Observable<any[]>;
+  sectionTitle!: Observable<string>;
+  categoryTitle!: Observable<string>;
+  headerSvgPath!: Observable<string>;
 
-  navList!: Observable<any[]>;
-  section = 'Something';
 
   constructor(navigationService: NavigationService) {
-    this.navList = navigationService.sections$;
-  }
-
-  ngOnDestroy(): void {
-    this.destory.next(true);
+    this.sections = navigationService.sections$;
+    this.sectionTitle = navigationService.sectionTitle$;
+    this.headerSvgPath = navigationService.headerSvgPath$;
+    this.categoryTitle = navigationService.categoryTitle$;
   }
 }
