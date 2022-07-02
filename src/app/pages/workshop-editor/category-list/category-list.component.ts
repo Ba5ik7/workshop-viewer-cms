@@ -8,7 +8,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 })
 export class CategoryListComponent implements OnInit {
 
-  @Input() categories!: any[];
+  @Input() categories!: any[] | null;
 
   constructor() {
   }

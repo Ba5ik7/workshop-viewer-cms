@@ -1,6 +1,6 @@
 <router-outlet></router-outlet>
 <div class="workshop-control">
   <div class="controls">
-    <category-list></category-list>
+    <category-list [categories]="categories | async"></category-list>
   </div>
 </div>
