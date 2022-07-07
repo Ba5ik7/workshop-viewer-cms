@@ -11,7 +11,7 @@
       img {
         // Hack https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element
         // Find the color https://codepen.io/sosuke/pen/Pjoqqp
-        filter: brightness(0) saturate(100%);
+        // filter: brightness(0) saturate(100%);
       }
     }
   }
@@ -22,14 +22,17 @@
     vertical-align: middle;
     // Hack https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element
     // Find the color https://codepen.io/sosuke/pen/Pjoqqp
-    filter: brightness(0) saturate(100%) invert(36%) sepia(1%) saturate(1755%) hue-rotate(314deg) brightness(91%) contrast(80%);
+    // filter: brightness(0) saturate(100%) invert(36%) sepia(1%) saturate(1755%) hue-rotate(314deg) brightness(91%) contrast(80%);
+    // filter: brightness(100%) saturate(100%);
+    // opacity: .65;
   }
 
   .workshop-menu-nav-content a.workshop-menu-nav-item-selected {
     img {
       // Hack https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element
       // Find the color https://codepen.io/sosuke/pen/Pjoqqp
-      filter: brightness(0) saturate(100%) invert(30%) sepia(18%) saturate(4377%) hue-rotate(209deg) brightness(93%) contrast(92%);
+      // filter: brightness(0) saturate(100%) invert(30%) sepia(18%) saturate(4377%) hue-rotate(209deg) brightness(93%) contrast(92%);
+      // -webkit-animation: rainbow 4s steps(36) infinite;
     }
   }
 
@@ -37,4 +40,21 @@
     margin: 0 4px 3px 0;
     vertical-align: middle;
   }
+}
+
+
+@-webkit-keyframes rainbow {
+   from { -webkit-filter:hue-rotate(10deg); }
+     to { -webkit-filter:hue-rotate(360deg); }
+}
+
+@keyframes rainbow {
+ from {
+    -webkit-filter:hue-rotate(10deg);
+            filter:hue-rotate(10deg);
+    }
+  to {
+    -webkit-filter:hue-rotate(360deg);
+            filter:hue-rotate(360deg);
+    }
 }
