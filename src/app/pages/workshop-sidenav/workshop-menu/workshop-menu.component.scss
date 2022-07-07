@@ -4,9 +4,37 @@
       color: red;
     }
     .create-section-icon {
-      color: green;
+      color: #00EE00;
+    }
+
+    &:hover {
+      img {
+        // Hack https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element
+        // Find the color https://codepen.io/sosuke/pen/Pjoqqp
+        filter: brightness(0) saturate(100%);
+      }
     }
   }
 
+  img {
+    height: 26px;
+    margin: 0 4px 3px 0;
+    vertical-align: middle;
+    // Hack https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element
+    // Find the color https://codepen.io/sosuke/pen/Pjoqqp
+    filter: brightness(0) saturate(100%) invert(36%) sepia(1%) saturate(1755%) hue-rotate(314deg) brightness(91%) contrast(80%);
+  }
 
+  .workshop-menu-nav-content a.workshop-menu-nav-item-selected {
+    img {
+      // Hack https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element
+      // Find the color https://codepen.io/sosuke/pen/Pjoqqp
+      filter: brightness(0) saturate(100%) invert(30%) sepia(18%) saturate(4377%) hue-rotate(209deg) brightness(93%) contrast(92%);
+    }
+  }
+
+  mat-icon {
+    margin: 0 4px 3px 0;
+    vertical-align: middle;
+  }
 }
