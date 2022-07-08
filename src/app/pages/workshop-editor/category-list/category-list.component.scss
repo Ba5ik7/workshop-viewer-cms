@@ -1,6 +1,7 @@
 :host {
   display: flex;
-  align-items: stretch;
+  flex-direction: column;
+
   mat-list {
     height: 200px;
     border: 1px solid red;
