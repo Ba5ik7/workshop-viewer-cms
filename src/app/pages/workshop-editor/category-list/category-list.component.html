@@ -1,12 +1,13 @@
-<mat-list>
-  <mat-list-item *ngFor="let category of categories">
-    {{category.name}}
-    <div class="flex-spacer"></div>
-    <mat-icon class="edit-category-icon" (click)="editCategory($event, category)">edit</mat-icon>
-    <mat-icon class="delete-category-icon" (click)="deleteCategory($event, category)">delete</mat-icon>
-  </mat-list-item>
+<mat-nav-list>
   <a mat-list-item (click)="createCategory()">
     <mat-icon>note_add</mat-icon>
     Create Category
   </a>
-</mat-list>
+  <hr />
+  <a mat-list-item *ngFor="let category of categories">
+    {{category.name}}
+    <div class="flex-spacer"></div>
+    <mat-icon class="edit-category-icon" (click)="editCategory($event, category)">edit</mat-icon>
+    <mat-icon class="delete-category-icon" (click)="deleteCategory($event, category)">delete</mat-icon>
+  </a>
+</mat-nav-list>
