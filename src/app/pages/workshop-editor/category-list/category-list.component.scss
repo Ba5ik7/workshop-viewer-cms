@@ -1,6 +1,9 @@
-mat-list {
-  height: 200px;
-  width: 100%;
-  border: 1px solid red;
-  overflow: auto;
+:host {
+  display: flex;
+  align-items: stretch;
+  mat-list {
+    height: 200px;
+    border: 1px solid red;
+    overflow: auto;
+  }
 }

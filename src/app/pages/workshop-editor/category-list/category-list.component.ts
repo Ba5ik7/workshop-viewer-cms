@@ -15,4 +15,9 @@ export class CategoryListComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  createCategory(): void { }
+  
+  deleteCategory(event: Event, category: any): void { }
+
+  editCategory(event: Event, category: any): void { }
 }

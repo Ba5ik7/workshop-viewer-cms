@@ -5,6 +5,7 @@ import { WorkshopEditorRoutingModule } from './workshop-editor-routing.module';
 import { WorkshopEditorComponent } from './workshop-editor.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { MatListModule } from '@angular/material/list';
   imports: [
     CommonModule,
     MatListModule,
+    MatIconModule,
     WorkshopEditorRoutingModule
   ]
 })
