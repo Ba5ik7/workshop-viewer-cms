@@ -9,20 +9,28 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteCategoryModalComponent } from './category-list/delete-category-modal/delete-category-modal.component';
 import { MatButtonModule } from '@angular/material/button';
+import { EditCategoryModalComponent } from './category-list/edit-category-modal/edit-category-modal.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     WorkshopEditorComponent,
     CategoryListComponent,
-    DeleteCategoryModalComponent
+    DeleteCategoryModalComponent,
+    EditCategoryModalComponent
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MatListModule,
     MatIconModule,
     MatDialogModule,
     MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
     WorkshopEditorRoutingModule
   ]
 })

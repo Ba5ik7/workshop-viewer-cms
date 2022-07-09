@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteCategoryModalComponent } from './delete-category-modal/delete-category-modal.component';
+import { EditCategoryModalComponent } from './edit-category-modal/edit-category-modal.component';
 
 @Component({
   selector: 'category-list',
@@ -30,6 +31,6 @@ export class CategoryListComponent implements OnInit {
   editCategory(event: Event, category: any): void {
     event.preventDefault();
     event.stopImmediatePropagation();
-    this.matDialog.open(DeleteCategoryModalComponent, { width: '400px', data: { category }});
+    this.matDialog.open(EditCategoryModalComponent, { width: '400px', data: { category }});
   }
 }
