@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CreateSectionModalComponent } from './create-section-modal/create-section-modal.component';
 import { DeleteSectionModalComponent } from './delete-section-modal/delete-section-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 
@@ -31,7 +32,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDividerModule
   ]
 })
 export class WorkshopMenuModule { }

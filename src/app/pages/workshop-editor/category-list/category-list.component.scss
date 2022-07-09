@@ -7,4 +7,16 @@
     border: 1px solid red;
     overflow: auto;
   }
+
+  mat-icon {
+    margin: 0 4px 3px 0;
+    vertical-align: middle;
+  }
+
+  .edit-icon, .delete-icon {
+    opacity: 0.45;
+    &:hover {
+      opacity: 1;
+    }
+  }
 }

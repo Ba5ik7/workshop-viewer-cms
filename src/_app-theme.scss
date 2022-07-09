@@ -31,6 +31,20 @@
     }
   }
 
+  .create-icon {
+    color: mat.get-color-from-palette($primary);
+  }
+  .edit-icon {
+    color: mat.get-color-from-palette($accent);
+  }
+  .delete-icon {
+    color: mat.get-color-from-palette($warn);
+  }
+
+  .warn {
+    color: mat.get-color-from-palette($warn);
+  }
+
   // @include home-theme.theme($theme);
   @include not-found-theme.theme($theme);
   @include workshop-sidenav.theme($theme);
