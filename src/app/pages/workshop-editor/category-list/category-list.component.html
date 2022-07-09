@@ -4,7 +4,7 @@
     Create Category
   </a>
   <hr />
-  <a mat-list-item *ngFor="let category of categories">
+  <a mat-list-item *ngFor="let category of categories" [routerLink]="'./' + category.id">
     {{category.name}}
     <div class="flex-spacer"></div>
     <mat-icon class="edit-category-icon" (click)="editCategory($event, category)">edit</mat-icon>
