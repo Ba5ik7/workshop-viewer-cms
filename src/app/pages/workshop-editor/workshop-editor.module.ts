@@ -13,6 +13,7 @@ import { EditCategoryModalComponent } from './category-list/edit-category-modal/
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CreateCategoryModalComponent } from './category-list/create-category-modal copy/create-category-modal.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     WorkshopEditorComponent,
     CategoryListComponent,
     DeleteCategoryModalComponent,
-    EditCategoryModalComponent
+    EditCategoryModalComponent,
+    CreateCategoryModalComponent
   ],
   imports: [
     CommonModule,
