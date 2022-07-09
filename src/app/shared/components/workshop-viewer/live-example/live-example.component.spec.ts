@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WorkshopComponent } from './workshop.component';
+import { LiveExampleComponent } from './live-example.component';
 
-describe('WorkshopComponent', () => {
-  let component: WorkshopComponent;
-  let fixture: ComponentFixture<WorkshopComponent>;
+describe('LiveExampleComponent', () => {
+  let component: LiveExampleComponent;
+  let fixture: ComponentFixture<LiveExampleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WorkshopComponent ]
+      declarations: [ LiveExampleComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WorkshopComponent);
+    fixture = TestBed.createComponent(LiveExampleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

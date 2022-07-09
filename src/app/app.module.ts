@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { HighlightOptions, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarModule } from './shared/components/navbar/navbar.module';
 
@@ -23,6 +26,18 @@ import { NavbarModule } from './shared/components/navbar/navbar.module';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: <HighlightOptions>{
+        coreLibraryLoader: () => import('highlight.js/lib/core'),
+        languages: {
+          typescript: () => import('highlight.js/lib/languages/typescript'),
+          css: () => import('highlight.js/lib/languages/css'),
+          html: () => import('highlight.js/lib/languages/xml')
+        },
+        themePath: 'assets/css/highlightjs-themes/gradient-dark.css'
+      }
+    }
   ],
   bootstrap: [AppComponent]
 })

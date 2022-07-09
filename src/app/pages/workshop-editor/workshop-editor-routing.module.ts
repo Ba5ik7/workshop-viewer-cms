@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WorkshopEditorComponent } from './workshop-editor.component';
-import { WorkshopComponent } from './workshop/workshop.component';
 
 const routes: Routes = [
   {
@@ -10,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: ':categoryId',
-        component: WorkshopComponent
+        loadChildren: () => import('./workshop-detail/workshop-detail.module').then(m => m.WorkshopDetailModule)
       },
     ]
   }

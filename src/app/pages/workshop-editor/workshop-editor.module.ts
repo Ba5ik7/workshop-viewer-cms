@@ -6,7 +6,6 @@ import { WorkshopEditorComponent } from './workshop-editor.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { WorkshopModule } from './workshop/workshop.module';
 
 
 @NgModule({
@@ -18,8 +17,7 @@ import { WorkshopModule } from './workshop/workshop.module';
     CommonModule,
     MatListModule,
     MatIconModule,
-    WorkshopEditorRoutingModule,
-    WorkshopModule
+    WorkshopEditorRoutingModule
   ]
 })
 export class WorkshopEditorModule { }
