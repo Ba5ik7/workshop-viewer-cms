@@ -24,4 +24,19 @@ export class WorkshopEditorService {
       error: (httpError: HttpErrorResponse) => this.createCategoryFormErrorSubject.next(httpError.status)
     });
   }
+
+
+  editCategoryFormErrorSubject = new Subject<number>();
+  editCategoryFormError$ = this.editCategoryFormErrorSubject.asObservable();
+
+  editCategoryFormSuccessSubject = new Subject<Category>();
+  editCategoryFormSuccess$ = this.editCategoryFormSuccessSubject.asObservable();
+
+  editCategoryNameAndSummary(category: Category): void {
+    this.httpClient.post<Category>('/api/navigation/category/edit-category-name-and-summary', category)
+    .subscribe({
+      next: (editedCategory) => this.editCategoryFormSuccessSubject.next(editedCategory),
+      error: (httpError: HttpErrorResponse) => this.editCategoryFormErrorSubject.next(httpError.status)
+    });
+  }
 }

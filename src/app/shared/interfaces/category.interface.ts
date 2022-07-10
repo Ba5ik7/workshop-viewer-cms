@@ -9,6 +9,7 @@ export interface ExampleSpecs {
 }
 
 export interface Category {
+  _id: string;
   /** Id of the doc item. Used in the URL for linking to the doc. */
   id: string;
   /** Display name of the doc item. */
