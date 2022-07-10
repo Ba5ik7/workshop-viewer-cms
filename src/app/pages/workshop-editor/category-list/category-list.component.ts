@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateCategoryModalComponent } from './create-category-modal copy/create-category-modal.component';
+import { CreateCategoryModalComponent } from './create-category-modal/create-category-modal.component';
 import { DeleteCategoryModalComponent } from './delete-category-modal/delete-category-modal.component';
 import { EditCategoryModalComponent } from './edit-category-modal/edit-category-modal.component';
 
