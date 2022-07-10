@@ -71,7 +71,7 @@ export class DeleteCategoryModalComponent implements OnInit {
     .pipe(take(1))
     .subscribe((categories: Category[]) => {
       const newCategories = categories.filter((oldCategory) => oldCategory._id !== _id);
-      this.navigationService.sectionNavListSub.next(newCategories);
+      this.navigationService.setCategories(newCategories);
     });
     this.dialogRef.close();
   }

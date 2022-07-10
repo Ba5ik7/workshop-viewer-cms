@@ -21,7 +21,7 @@ export class WorkshopEditorComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.destory), distinct())
     .subscribe(params => navigationService.sectionRouteSub.next(params['section']));
 
-    this.categories = navigationService.sectionNavList$;
+    this.categories = navigationService.categories$;
   }
 
   ngOnInit(): void {

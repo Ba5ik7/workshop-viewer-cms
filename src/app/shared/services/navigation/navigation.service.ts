@@ -74,23 +74,17 @@ export class NavigationService {
 
   private async getSections(): Promise<void> {
     return await lastValueFrom(this.httpClient.get<{ [key: string]: Section }>('/api/navigation/sections'))
-    .then((res) => {
-      this.sections = res;
-      this.sectionsSub.next(res);
-    });
+    .then((sections) => this.setSections(sections));
   }
-
+  
   private async getCategories(currentSection: string): Promise<void> {
     const params = new HttpParams().set('section', currentSection);
     return await lastValueFrom(this.httpClient
-    .get<Category[]>('/api/navigation/categories', { params }))
-    .then((res) => {
-      this.categories = res;
-      this.categoriesSub.next(res);
-      this.setCategoryProperties(this.categoryRoute);
-    });
+      .get<Category[]>('/api/navigation/categories', { params }))
+      .then((categories) => this.setCategories(categories)
+    );
   }
-
+    
   private async setSectionProperties(section: string): Promise<void> {
     await this.getCategories(section);
     
@@ -100,7 +94,7 @@ export class NavigationService {
     this.headerSvgPathSub.next(this.sections[section].headerSvgPath);
     this.sectionNavListSub.next(this.categories);
   }
-
+  
   private setCategoryProperties(category: string): void {
     // When the pages frist loads we need to wait for the categories to be set
     // Once they are this method will be call again.
@@ -109,5 +103,16 @@ export class NavigationService {
     this.workshopDocumentsSub.next(currentCategoryObject?.workshopDocuments);
     this.categorySub.next(currentCategoryObject);
     this.categoryTitleSub.next(currentCategoryObject?.name ?? 'Categories');
+  }
+  
+  public setCategories(categories: Category[]): void {
+    this.categories = categories;
+    this.categoriesSub.next(categories);
+    this.setCategoryProperties(this.categoryRoute);
+  }
+  
+  public setSections(sections: { [key: string]: Section; }): void {
+    this.sections = sections;
+    this.sectionsSub.next(sections);
   }
 }

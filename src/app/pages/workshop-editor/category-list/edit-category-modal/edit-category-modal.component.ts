@@ -76,7 +76,7 @@ export class EditCategoryModalComponent implements OnInit, OnDestroy {
     .subscribe((categories: Category[]) => {
       const newCategories = categories.filter((oldCategory) => oldCategory._id !== category._id);
       newCategories.push(category);
-      this.navigationService.sectionNavListSub.next(newCategories);
+      this.navigationService.setCategories(newCategories);
     });
     this.dialogRef.close();
   }

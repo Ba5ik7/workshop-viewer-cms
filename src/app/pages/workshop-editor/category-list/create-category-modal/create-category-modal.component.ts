@@ -79,7 +79,7 @@ export class CreateCategoryModalComponent implements OnInit, OnDestroy {
     .subscribe((categories: Category[]) => {
       const newCategories = categories.slice(0);
       newCategories.push(category);
-      this.navigationService.sectionNavListSub.next(newCategories);
+      this.navigationService.setCategories(newCategories);
     });
     this.dialogRef.close();
   }
