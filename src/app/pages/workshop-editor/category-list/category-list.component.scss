@@ -2,9 +2,12 @@
   display: flex;
   flex-direction: column;
 
-  mat-list {
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .category-list {
     height: 200px;
-    border: 1px solid red;
     overflow: auto;
   }
 

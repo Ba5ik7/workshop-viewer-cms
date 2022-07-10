@@ -5,6 +5,8 @@
   </a>
   <!-- <hr /> -->
   <mat-divider></mat-divider>
+</mat-nav-list>
+<mat-nav-list class="category-list">
   <a mat-list-item *ngFor="let category of categories" [routerLink]="'./' + category.id">
     {{category.name}}
     <div class="flex-spacer"></div>

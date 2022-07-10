@@ -13,8 +13,8 @@
   .workshop-controls-panel {
     border-left: 1px solid mat.get-color-from-palette($foreground, divider);
 
-    &::-webkit-scrollbar-thumb {
-      background: rgba(0, 0, 0, .26);
+    category-list {
+      border-bottom: 1px solid mat.get-color-from-palette($foreground, divider);
     }
 
     a {

@@ -19,6 +19,10 @@
   $foreground: map.get($theme, foreground);
   $next-theme: mat.define-palette(mat.$red-palette);
 
+  ::-webkit-scrollbar-thumb {
+    background: rgba(mat.get-color-from-palette($primary, default), .45);
+  }
+
   .app-background {
     background: mat.get-color-from-palette($background, background);
   }
