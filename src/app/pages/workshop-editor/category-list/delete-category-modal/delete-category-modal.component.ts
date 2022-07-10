@@ -62,16 +62,15 @@ export class DeleteCategoryModalComponent implements OnInit {
     
     this.workshopEditorService.deleteCategoryFormSuccess$
     .pipe(takeUntil(this.destory))
-    .subscribe((category) => this.deleteCategorySuccuessful(category));
+    .subscribe((_id) => this.deleteCategorySuccuessful(_id));
   }
 
-  deleteCategorySuccuessful(category: Category): void {
+  deleteCategorySuccuessful(_id: string): void {
     this.requestInProgress();
     this.navigationService.categories$
     .pipe(take(1))
     .subscribe((categories: Category[]) => {
-      const newCategories = categories.filter((oldCategory) => oldCategory._id !== category._id);
-      newCategories.push(category);
+      const newCategories = categories.filter((oldCategory) => oldCategory._id !== _id);
       this.navigationService.sectionNavListSub.next(newCategories);
     });
     this.dialogRef.close();

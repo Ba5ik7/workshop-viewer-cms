@@ -44,13 +44,13 @@ export class WorkshopEditorService {
   deleteCategoryFormErrorSubject = new Subject<number>();
   deleteCategoryFormError$ = this.deleteCategoryFormErrorSubject.asObservable();
 
-  deleteCategoryFormSuccessSubject = new Subject<Category>();
+  deleteCategoryFormSuccessSubject = new Subject<string>();
   deleteCategoryFormSuccess$ = this.deleteCategoryFormSuccessSubject.asObservable();
 
-  deleteCategory(category: Category): void {
-    this.httpClient.post<Category>('/api/navigation/category/delete-category-and-workshops', category)
+  deleteCategory(_id: string): void {
+    this.httpClient.post<Category>('/api/navigation/category/delete-category-and-workshops', { _id })
     .subscribe({
-      next: (editedCategory) => this.deleteCategoryFormSuccessSubject.next(editedCategory),
+      next: () => this.deleteCategoryFormSuccessSubject.next(_id),
       error: (httpError: HttpErrorResponse) => this.deleteCategoryFormErrorSubject.next(httpError.status)
     });
   }
