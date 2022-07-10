@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 import { Category } from 'src/app/shared/interfaces/category.interface';
+import { NavigationService } from 'src/app/shared/services/navigation/navigation.service';
 import { WorkshopEditorService } from '../../workshop-editor.service';
 
 @Component({
@@ -28,6 +29,7 @@ export class CreateCategoryModalComponent implements OnInit, OnDestroy {
   }
 
   createCategoryForm: FormGroup = this.formBuilder.group({
+    sectionId:['', [Validators.required]],
     name: ['', [Validators.required]],
     summary: ['', [Validators.required]]
   });
@@ -35,6 +37,7 @@ export class CreateCategoryModalComponent implements OnInit, OnDestroy {
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private workshopEditorService: WorkshopEditorService,
+    private navigationService: NavigationService,
     private dialogRef: MatDialogRef<CreateCategoryModalComponent>,
     private formBuilder: FormBuilder
     ) { }
@@ -48,6 +51,10 @@ export class CreateCategoryModalComponent implements OnInit, OnDestroy {
   }
 
   initCreateCategory(): void {
+    this.navigationService.section$
+    .pipe(takeUntil(this.destory))
+    .subscribe((section) => this.createCategoryForm.get('sectionId')?.setValue(section._id));
+
     this.createCategoryForm.statusChanges
     .pipe(takeUntil(this.destory))
     .subscribe(() => this.setErrorsMessages(this.createCategoryForm, this.createCategoryFormErrorMessages));
