@@ -1,6 +1,10 @@
 :host {
   grid-template-columns: 0 calc(100vw - 583px) auto;
   display: grid;
+
+  .select-a-category-placeholder{
+    padding: 50px;
+  }
 }
 
 .workshop-controls-panel {

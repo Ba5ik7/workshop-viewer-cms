@@ -14,6 +14,7 @@ export class WorkshopEditorComponent implements OnInit, OnDestroy {
   destory: Subject<boolean> = new Subject();
 
   categories!: Observable<any[]>;
+  routerIsActivate: boolean = false;
 
   constructor(activatedRoute: ActivatedRoute, navigationService: NavigationService) {
     activatedRoute.params
