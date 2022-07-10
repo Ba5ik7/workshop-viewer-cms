@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subject, take, takeUntil } from 'rxjs';
 import { Category } from 'src/app/shared/interfaces/category.interface';
 import { NavigationService } from 'src/app/shared/services/navigation/navigation.service';
+import { MatchStringValidator } from 'src/app/shared/validators/match-string.validator';
 import { WorkshopEditorService } from '../../workshop-editor.service';
 
 @Component({
@@ -21,6 +22,7 @@ export class DeleteCategoryModalComponent implements OnInit {
   deleteCategoryFormLevelMessage!: string;
 
   errorMessages: { [key: string]: string } = {
+    required: 'Required',
     matchString: 'Name does NOT match.',
   };
 
@@ -31,7 +33,7 @@ export class DeleteCategoryModalComponent implements OnInit {
   deleteCategoryForm: FormGroup = this.formBuilder.group({
     _id: [this.data.category?._id, [Validators.required]],
     name: ['', [Validators.required]]
-  });
+  }, { validators: MatchStringValidator('name', this.data.category.name) });
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { category: any },
