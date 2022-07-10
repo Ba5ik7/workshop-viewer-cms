@@ -82,8 +82,8 @@ export class EditCategoryModalComponent implements OnInit, OnDestroy {
   }
 
   editCategoryNameAndSummary(): void {
+    this.requestInProgress(true);
     this.workshopEditorService.editCategoryNameAndSummary(this.editCategoryForm.value);
-    this.dialogRef.close();
   }
 
   requestInProgress(predicate: boolean = false): void {

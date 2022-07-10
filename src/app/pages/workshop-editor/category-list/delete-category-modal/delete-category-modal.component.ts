@@ -31,7 +31,6 @@ export class DeleteCategoryModalComponent implements OnInit {
   }
 
   deleteCategoryForm: FormGroup = this.formBuilder.group({
-    _id: [this.data.category?._id, [Validators.required]],
     name: ['', [Validators.required]]
   }, { validators: MatchStringValidator('name', this.data.category.name) });
 
@@ -79,8 +78,8 @@ export class DeleteCategoryModalComponent implements OnInit {
   }
 
   deleteCategory() {
-    console.log(this.data);
-    this.dialogRef.close();
+    this.requestInProgress(true);
+    this.workshopEditorService.deleteCategory(this.data.category._id);
   }
 
   requestInProgress(predicate: boolean = false): void {
