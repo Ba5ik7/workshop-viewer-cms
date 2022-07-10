@@ -39,4 +39,19 @@ export class WorkshopEditorService {
       error: (httpError: HttpErrorResponse) => this.editCategoryFormErrorSubject.next(httpError.status)
     });
   }
+
+
+  deleteCategoryFormErrorSubject = new Subject<number>();
+  deleteCategoryFormError$ = this.deleteCategoryFormErrorSubject.asObservable();
+
+  deleteCategoryFormSuccessSubject = new Subject<Category>();
+  deleteCategoryFormSuccess$ = this.deleteCategoryFormSuccessSubject.asObservable();
+
+  deleteCategory(category: Category): void {
+    this.httpClient.post<Category>('/api/navigation/category/delete-category-and-workshops', category)
+    .subscribe({
+      next: (editedCategory) => this.deleteCategoryFormSuccessSubject.next(editedCategory),
+      error: (httpError: HttpErrorResponse) => this.deleteCategoryFormErrorSubject.next(httpError.status)
+    });
+  }
 }
