@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, take, takeUntil } from 'rxjs';
 import { Category } from 'src/app/shared/interfaces/category.interface';
 import { NavigationService } from 'src/app/shared/services/navigation/navigation.service';
 import { WorkshopEditorService } from '../../workshop-editor.service';
@@ -73,9 +73,14 @@ export class CreateCategoryModalComponent implements OnInit, OnDestroy {
   }
 
   createCategorySuccuessful(category: Category): void {
-    console.log({
-      category
+    this.requestInProgress();
+    this.navigationService.categories$
+    .pipe(take(1))
+    .subscribe((categories) => {
+      categories.push(category);
+      this.navigationService.categoriesSub.next(categories);
     });
+    this.dialogRef.close();
   }
 
   createCategory() {
