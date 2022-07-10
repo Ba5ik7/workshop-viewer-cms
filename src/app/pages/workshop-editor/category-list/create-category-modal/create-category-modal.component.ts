@@ -1,6 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Subject, takeUntil } from 'rxjs';
+import { Category } from 'src/app/shared/interfaces/category.interface';
+import { WorkshopEditorService } from '../../workshop-editor.service';
 
 @Component({
   selector: 'app-create-category-modal',
@@ -8,22 +11,84 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./create-category-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CreateCategoryModalComponent implements OnInit {
+export class CreateCategoryModalComponent implements OnInit, OnDestroy {
+
+  destory: Subject<boolean> = new Subject();
+
+  formLoading: boolean = false;
+
+  createCategoryFormLevelMessage!: string;
+
+  errorMessages: { [key: string]: string } = {
+    required: 'Required',
+  };
+
+  createCategoryFormErrorMessages: { [key: string]: string } = {
+    name: '', summary: ''
+  }
 
   createCategoryForm: FormGroup = this.formBuilder.group({
-    categoryTitle: ['', [Validators.required]]
+    name: ['', [Validators.required]],
+    summary: ['', [Validators.required]]
   });
 
   constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+    private workshopEditorService: WorkshopEditorService,
     private dialogRef: MatDialogRef<CreateCategoryModalComponent>,
     private formBuilder: FormBuilder
     ) { }
 
   ngOnInit(): void {
+    this.initCreateCategory();
+  }
+
+  ngOnDestroy(): void {
+    this.destory.next(true);
+  }
+
+  initCreateCategory(): void {
+    this.createCategoryForm.statusChanges
+    .pipe(takeUntil(this.destory))
+    .subscribe(() => this.setErrorsMessages(this.createCategoryForm, this.createCategoryFormErrorMessages));
+  
+    this.workshopEditorService.createCategoryFormError$
+    .pipe(takeUntil(this.destory))
+    .subscribe((error) => {      
+      this.requestInProgress();
+      this.createCategoryFormLevelMessage = this.errorMessages['httpFailure'];
+      this.changeDetectorRef.markForCheck();
+    });
+    
+    this.workshopEditorService.createCategoryFormSuccess$
+    .pipe(takeUntil(this.destory))
+    .subscribe((category) => this.createCategorySuccuessful(category));
+  }
+
+  createCategorySuccuessful(category: Category): void {
+    console.log({
+      category
+    });
   }
 
   createCategory() {
-    this.dialogRef.close();
+    this.requestInProgress(true);
+    this.workshopEditorService.createCategory(this.createCategoryForm.value);
+  }
+
+  requestInProgress(predicate: boolean = false) {
+    this.formLoading = predicate;
+    this.dialogRef.disableClose = predicate;
+  }
+
+  setErrorsMessages(formGroup: FormGroup, formControlMessages: { [key: string]: string }): void {
+    Object.keys(formGroup.controls).forEach(element => {
+      const errors = formGroup.get(element)?.errors;
+      if(errors) {         
+        const error = Object.keys(errors)[0];
+        formControlMessages[element] = this.errorMessages[error];
+      }
+    });
   }
 
 }
