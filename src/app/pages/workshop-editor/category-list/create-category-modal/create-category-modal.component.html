@@ -1,6 +1,7 @@
 <div class="form-container">
   <form [formGroup]="createCategoryForm">
     <h2 mat-dialog-title>Create a New Category?</h2>
+    <span class="form-level-error-message">{{createCategoryFormLevelMessage}}</span>
     <mat-form-field>
       <mat-label>Name</mat-label>
       <input matInput type="text" placeholder="Name" formControlName="name">
