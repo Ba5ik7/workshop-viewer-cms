@@ -9,6 +9,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 export class PageListComponent implements OnInit {
 
   @Input() pages!: any[] | null;
+  @Input() currentCategory!: any | null;
 
   constructor() { }
 
