@@ -1,6 +1,6 @@
 export interface Section {
   sectionTitle: string;
-  summary: string;
+  summary?: string;
   menuSvgPath?: string;
   headerSvgPath?: string;
 }

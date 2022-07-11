@@ -7,7 +7,9 @@
   <mat-divider></mat-divider>
 </mat-nav-list>
 <mat-nav-list class="category-list">
-  <a mat-list-item *ngFor="let category of categories" [routerLink]="'./' + category.id">
+  <a mat-list-item *ngFor="let category of categories" 
+    [routerLink]="'./' + category.id"
+    routerLinkActive="workshop-menu-nav-item-selected">
     {{category.name}}
     <div class="flex-spacer"></div>
     <mat-icon class="edit-icon" (click)="editCategory($event, category)">edit</mat-icon>

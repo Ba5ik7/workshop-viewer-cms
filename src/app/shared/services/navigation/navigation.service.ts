@@ -11,6 +11,17 @@ function filterNullish<T>(): UnaryFunction<Observable<T | null | undefined>, Obs
   );
 }
 
+const dashboardSection: Section = {
+  headerSvgPath: '/assets/img/angular.svg',
+  sectionTitle: 'Dashboard'
+}
+
+
+const usersSection: Section = {
+  headerSvgPath: '/assets/img/angular.svg',
+  sectionTitle: 'Users',
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -86,13 +97,16 @@ export class NavigationService {
   }
     
   private async setSectionProperties(section: string): Promise<void> {
-    await this.getCategories(section);
-    
-    this.sectionRoute = section;
-    this.sectionSub.next(this.sections[section]);  
-    this.sectionTitleSub.next(this.sections[section].sectionTitle);
-    this.headerSvgPathSub.next(this.sections[section].headerSvgPath);
-    this.sectionNavListSub.next(this.categories);
+    if(section !== 'dashboard' || section !== 'dashboard') {
+      await this.getCategories(section);
+      this.sectionRoute = section;
+      this.sectionSub.next(this.sections[section]);  
+      this.sectionTitleSub.next(this.sections[section].sectionTitle);
+      this.headerSvgPathSub.next(this.sections[section].headerSvgPath);
+      this.sectionNavListSub.next(this.categories);
+    } else {
+
+    }
   }
   
   private setCategoryProperties(category: string): void {

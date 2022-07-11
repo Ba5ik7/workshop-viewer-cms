@@ -14,7 +14,6 @@
         <mat-icon class="create-icon">note_add</mat-icon>
         Create Section
       </a>
-      <!-- <hr /> -->
       <mat-divider></mat-divider>
       <a mat-list-item *ngFor="let section of sections | keyvalue"
           [routerLink]="'workshop-editor/' + section.value._id"
