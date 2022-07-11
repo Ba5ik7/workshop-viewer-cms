@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'page-list',
@@ -8,13 +8,15 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class PageListComponent implements OnInit {
 
+  @Input() pages!: any[] | null;
+
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-  createPage(): void {
+  createPage(): void { }
 
-  }
+  editPage(event: Event, category: any): void { }
 
+  deletePage(event: Event, category: any): void { }
 }

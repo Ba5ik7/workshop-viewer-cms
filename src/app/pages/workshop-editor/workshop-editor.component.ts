@@ -14,6 +14,9 @@ export class WorkshopEditorComponent implements OnInit, OnDestroy {
   destory: Subject<boolean> = new Subject();
 
   categories!: Observable<any[]>;
+  
+  workshopDocuments!: Observable<string[]>;
+
   routerIsActivate: boolean = false;
 
   constructor(activatedRoute: ActivatedRoute, navigationService: NavigationService) {
@@ -22,6 +25,7 @@ export class WorkshopEditorComponent implements OnInit, OnDestroy {
     .subscribe(params => navigationService.sectionRouteSub.next(params['section']));
 
     this.categories = navigationService.categories$;
+    this.workshopDocuments = navigationService.workshopDocuments$
   }
 
   ngOnInit(): void {
