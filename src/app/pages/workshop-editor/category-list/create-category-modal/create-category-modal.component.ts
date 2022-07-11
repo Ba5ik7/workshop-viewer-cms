@@ -29,7 +29,8 @@ export class CreateCategoryModalComponent implements OnInit, OnDestroy {
   }
 
   createCategoryForm: FormGroup = this.formBuilder.group({
-    sectionId:['', [Validators.required]],
+    sectionId:[this.navigationService.sectionRoute],
+    sortId:[this.navigationService.categories.length],
     name: ['', [Validators.required]],
     summary: ['', [Validators.required]]
   });
@@ -51,10 +52,6 @@ export class CreateCategoryModalComponent implements OnInit, OnDestroy {
   }
 
   initCreateCategory(): void {
-    this.navigationService.section$
-    .pipe(takeUntil(this.destory))
-    .subscribe((section) => this.createCategoryForm.get('sectionId')?.setValue(section._id));
-
     this.createCategoryForm.statusChanges
     .pipe(takeUntil(this.destory))
     .subscribe(() => this.setErrorsMessages(this.createCategoryForm, this.createCategoryFormErrorMessages));
@@ -86,6 +83,7 @@ export class CreateCategoryModalComponent implements OnInit, OnDestroy {
 
   createCategory() {
     this.requestInProgress(true);
+    this.navigationService.categories.length
     this.workshopEditorService.createCategory(this.createCategoryForm.value);
   }
 
