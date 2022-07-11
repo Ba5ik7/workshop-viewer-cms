@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateCategoryModalComponent } from './category-list/create-category-modal/create-category-modal.component';
+import { PageListComponent } from './page-list/page-list.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { CreateCategoryModalComponent } from './category-list/create-category-mo
     CategoryListComponent,
     DeleteCategoryModalComponent,
     EditCategoryModalComponent,
-    CreateCategoryModalComponent
+    CreateCategoryModalComponent,
+    PageListComponent
   ],
   imports: [
     CommonModule,
