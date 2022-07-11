@@ -18,7 +18,7 @@ const dashboardSection: Section = {
 
 
 const usersSection: Section = {
-  headerSvgPath: '/assets/img/angular.svg',
+  headerSvgPath: '/assets/img/users-color.png',
   sectionTitle: 'Users',
 }
 
@@ -97,7 +97,7 @@ export class NavigationService {
   }
     
   private async setSectionProperties(section: string): Promise<void> {
-    if(section !== 'dashboard' || section !== 'dashboard') {
+    if(section !== 'dashboard' && section !== 'users') {
       await this.getCategories(section);
       this.sectionRoute = section;
       this.sectionSub.next(this.sections[section]);  
