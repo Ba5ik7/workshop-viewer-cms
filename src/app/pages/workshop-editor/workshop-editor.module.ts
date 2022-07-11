@@ -7,6 +7,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DeleteCategoryModalComponent } from './category-list/delete-category-modal/delete-category-modal.component';
 import { MatButtonModule } from '@angular/material/button';
 import { EditCategoryModalComponent } from './category-list/edit-category-modal/edit-category-modal.component';
@@ -29,6 +30,7 @@ import { PageListComponent } from './page-list/page-list.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    DragDropModule,
     MatListModule,
     MatIconModule,
     MatDialogModule,

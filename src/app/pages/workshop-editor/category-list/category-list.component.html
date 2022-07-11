@@ -5,10 +5,12 @@
   </a>
   <mat-divider></mat-divider>
 </mat-nav-list>
-<mat-nav-list class="category-list">
-  <a mat-list-item *ngFor="let category of categories" 
+<mat-nav-list cdkDropList class="category-list">
+  <a mat-list-item cdkDrag *ngFor="let category of categories"
+    class="category-item"
     [routerLink]="'./' + category.id + '/' + category.workshopDocuments[0]._id"
     routerLinkActive="workshop-menu-nav-item-selected">
+    <mat-icon>drag_indicator</mat-icon>
     {{category.name}}
     <div class="flex-spacer"></div>
     <mat-icon class="edit-icon" (click)="editCategory($event, category)">edit</mat-icon>
