@@ -83,7 +83,6 @@ export class CreateCategoryModalComponent implements OnInit, OnDestroy {
 
   createCategory() {
     this.requestInProgress(true);
-    this.navigationService.categories.length
     this.workshopEditorService.createCategory(this.createCategoryForm.value);
   }
 
