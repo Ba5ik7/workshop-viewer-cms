@@ -25,13 +25,13 @@ import { WorkshopViewerService } from './workshop-viewer.service';
 })
 export class WorkshopViewerComponent implements OnInit, OnDestroy {
 
-  currentDocuments!: string[]
+  currentDocument!: string
 
-  @Input('workshopDocuments')
-  set workshopDocuments(currentDocuments: string[] | null) {
+  @Input('workshopDocument')
+  set workshopDocument(currentDocument: string | null) {
     // Null start :(
-    if(currentDocuments === null || currentDocuments === undefined) return;
-    this.currentDocuments = currentDocuments
+    if(currentDocument === null || currentDocument === undefined) return;
+    this.currentDocument = currentDocument
     this.fetchWorkshopDocuments();
   }
   
@@ -73,7 +73,7 @@ export class WorkshopViewerComponent implements OnInit, OnDestroy {
   ngOnInit(): void { }
 
   private fetchWorkshopDocuments():void {
-    this.workshopViewerService.fetchWorkshop(`/api/workshop/workshops/${this.currentDocuments[0]}`)
+    this.workshopViewerService.fetchWorkshop(`/api/workshop/workshops/${this.currentDocument}`)
     .pipe(takeUntil(this.destory))
     .subscribe((data) => {
       this.correctUrlPaths(data);
@@ -137,7 +137,7 @@ export class WorkshopViewerComponent implements OnInit, OnDestroy {
         // TODO setup real pagnation
         console.log(event);
         console.log('62aa78b1e0c43119ba4c2acc');
-        this.workshopDocuments = ['62aa78b1e0c43119ba4c2acc'];
+        this.workshopDocument = '62aa78b1e0c43119ba4c2acc';
       }))
     });
   }
