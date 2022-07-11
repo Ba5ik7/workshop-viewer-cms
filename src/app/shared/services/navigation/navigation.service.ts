@@ -12,7 +12,7 @@ function filterNullish<T>(): UnaryFunction<Observable<T | null | undefined>, Obs
 }
 
 const dashboardSection: Section = {
-  headerSvgPath: '/assets/img/angular.svg',
+  headerSvgPath: '/assets/img/dashboard-color.png',
   sectionTitle: 'Dashboard'
 }
 
@@ -105,7 +105,10 @@ export class NavigationService {
       this.headerSvgPathSub.next(this.sections[section].headerSvgPath);
       this.sectionNavListSub.next(this.categories);
     } else {
-
+      const staticSection = section !== 'dashboard' ? usersSection : dashboardSection; 
+      this.sectionTitleSub.next(staticSection.sectionTitle);
+      this.headerSvgPathSub.next(staticSection.headerSvgPath);
+      this.categoryTitleSub.next('Overview');
     }
   }
   
