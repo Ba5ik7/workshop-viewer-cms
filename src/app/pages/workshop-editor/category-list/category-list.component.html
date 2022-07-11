@@ -7,7 +7,7 @@
 </mat-nav-list>
 <mat-nav-list class="category-list">
   <a mat-list-item *ngFor="let category of categories" 
-    [routerLink]="'./' + category.id + '/' + category.workshopDocuments[0]"
+    [routerLink]="'./' + category.id + '/' + category.workshopDocuments[0]._id"
     routerLinkActive="workshop-menu-nav-item-selected">
     {{category.name}}
     <div class="flex-spacer"></div>

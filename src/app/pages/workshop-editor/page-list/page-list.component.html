@@ -7,9 +7,9 @@
 </mat-nav-list>
 <mat-nav-list class="page-list">
   <a mat-list-item *ngFor="let page of pages" 
-    [routerLink]="'./' + currentCategory.id + '/' + page"
+    [routerLink]="'./' + currentCategory.id + '/' + page._id"
     routerLinkActive="workshop-menu-nav-item-selected">
-    {{page}}
+    {{page.name}}
     <div class="flex-spacer"></div>
     <mat-icon class="edit-icon" (click)="editPage($event, page)">edit</mat-icon>
     <mat-icon class="delete-icon" (click)="deletePage($event, page)">delete</mat-icon>
