@@ -1,6 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { WorkshopEditorService } from '../workshop-editor.service';
 import { CreateCategoryModalComponent } from './create-category-modal/create-category-modal.component';
 import { DeleteCategoryModalComponent } from './delete-category-modal/delete-category-modal.component';
 import { EditCategoryModalComponent } from './edit-category-modal/edit-category-modal.component';
@@ -14,7 +15,10 @@ export class CategoryListComponent implements OnInit {
 
   @Input() categories!: any[] | null;
 
-  constructor(public matDialog: MatDialog) {
+  constructor(
+    public matDialog: MatDialog,
+    public workshopEditorService: WorkshopEditorService
+    ) {
   }
 
   ngOnInit(): void { }
@@ -36,8 +40,9 @@ export class CategoryListComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<any[]>) {
-    moveItemInArray(this.categories ?? [], event.previousIndex, event.currentIndex);
+    const categories = this.categories ?? []; 
+    moveItemInArray(categories, event.previousIndex, event.currentIndex);
     this.categories?.map((category, index) => category.sortId = index);
-    console.log(this.categories);
+    this.workshopEditorService.sortCategories(categories);
   }
 }

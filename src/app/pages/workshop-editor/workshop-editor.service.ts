@@ -54,4 +54,18 @@ export class WorkshopEditorService {
       error: (httpError: HttpErrorResponse) => this.deleteCategoryFormErrorSubject.next(httpError.status)
     });
   }
+
+  sortCategoryFormErrorSubject = new Subject<number>();
+  sortCategoryFormError$ = this.sortCategoryFormErrorSubject.asObservable();
+
+  sortCategoryFormSuccessSubject = new Subject<Category[]>();
+  sortCategoryFormSuccess$ = this.sortCategoryFormSuccessSubject.asObservable();
+
+  sortCategories(categories: Category[]): void {
+    this.httpClient.post<Category[]>('/api/navigation/category/sort-categories', categories)
+    .subscribe({
+      next: () => this.sortCategoryFormSuccessSubject.next(categories),
+      error: (httpError: HttpErrorResponse) => this.sortCategoryFormErrorSubject.next(httpError.status)
+    });
+  }
 }
