@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateCategoryModalComponent } from './create-category-modal/create-category-modal.component';
@@ -32,5 +33,11 @@ export class CategoryListComponent implements OnInit {
     event.preventDefault();
     event.stopImmediatePropagation();
     this.matDialog.open(EditCategoryModalComponent, { width: '400px', data: { category }});
+  }
+
+  drop(event: CdkDragDrop<any[]>) {
+    moveItemInArray(this.categories ?? [], event.previousIndex, event.currentIndex);
+    this.categories?.map((category, index) => category.sortId = index);
+    console.log(this.categories);
   }
 }

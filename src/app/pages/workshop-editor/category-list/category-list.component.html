@@ -5,7 +5,7 @@
   </a>
   <mat-divider></mat-divider>
 </mat-nav-list>
-<mat-nav-list cdkDropList class="category-list">
+<mat-nav-list cdkDropList class="category-list" (cdkDropListDropped)="drop($event)">
   <a mat-list-item cdkDrag *ngFor="let category of categories"
     class="category-item"
     [routerLink]="'./' + category.id + '/' + category.workshopDocuments[0]._id"
