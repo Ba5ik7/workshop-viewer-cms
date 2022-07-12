@@ -1,6 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Subject, takeUntil } from 'rxjs';
 import { WorkshopEditorService } from '../workshop-editor.service';
 import { CreateCategoryModalComponent } from './create-category-modal/create-category-modal.component';
@@ -18,10 +19,17 @@ export class CategoryListComponent implements OnInit, OnDestroy {
 
   cdkDragDisabled: boolean = false;
 
+  snackBarOptiions: MatSnackBarConfig = {
+    duration: 3000,
+    horizontalPosition: 'right',
+    verticalPosition: 'top'
+  }
+
   @Input() categories!: any[] | null;
 
   constructor(
     public matDialog: MatDialog,
+    private snackBar: MatSnackBar,
     public workshopEditorService: WorkshopEditorService
     ) {
   }
@@ -62,14 +70,14 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     this.workshopEditorService.sortCategoryFormError$
     .pipe(takeUntil(this.destory))
     .subscribe((error) => {
-      console.log({ error });
+      this.snackBar.open('😿 Error updating the categories new order', undefined, this.snackBarOptiions);
       this.cdkDragDisabled = false;
     });
     
     this.workshopEditorService.sortCategoryFormSuccess$
     .pipe(takeUntil(this.destory))
     .subscribe((category) => {
-      console.log({ category });
+      this.snackBar.open('😸 Categories new order updated', undefined, this.snackBarOptiions);
       this.cdkDragDisabled = false;
     });
   }

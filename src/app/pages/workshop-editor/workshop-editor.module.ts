@@ -16,6 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateCategoryModalComponent } from './category-list/create-category-modal/create-category-modal.component';
 import { PageListComponent } from './page-list/page-list.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { PageListComponent } from './page-list/page-list.component';
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
+    MatSnackBarModule,
     WorkshopEditorRoutingModule
   ]
 })
