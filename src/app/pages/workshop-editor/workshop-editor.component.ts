@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { distinct, Observable, Subject, takeUntil } from 'rxjs';
+import { distinct, map, mergeMap, Observable, Subject, takeUntil, toArray } from 'rxjs';
+import { Category } from 'src/app/shared/interfaces/category.interface';
 import { NavigationService } from 'src/app/shared/services/navigation/navigation.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class WorkshopEditorComponent implements OnInit, OnDestroy {
   
   destory: Subject<boolean> = new Subject();
 
-  categories!: Observable<any[]>;
+  categories!: Observable<Category[]>;
   currentCategory!: Observable<any>;
   
   workshopDocuments!: Observable<string[]>;
@@ -25,8 +26,12 @@ export class WorkshopEditorComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.destory), distinct())
     .subscribe(params => navigationService.sectionRouteSub.next(params['section']));
 
-    this.categories = navigationService.categories$;
-    this.currentCategory = navigationService.category$
+    this.categories = navigationService.categories$
+    .pipe(
+      map((categories: Category[]) => categories?.sort((a, b) => a.sortId - b.sortId))
+    );
+  
+    this.currentCategory = navigationService.category$;
     this.workshopDocuments = navigationService.workshopDocuments$
   }
 

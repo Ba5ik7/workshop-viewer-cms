@@ -12,7 +12,7 @@ export interface Category {
   _id?: string;
   /** Id of the doc item. Used in the URL for linking to the doc. */
   id?: string;
-  sortId?: number;
+  sortId: number;
   /** Display name of the doc item. */
   name?: string;
   /** Short summary of the doc item. */
