@@ -1,6 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subject, takeUntil } from 'rxjs';
 import { WorkshopEditorService } from '../workshop-editor.service';
 import { CreateCategoryModalComponent } from './create-category-modal/create-category-modal.component';
 import { DeleteCategoryModalComponent } from './delete-category-modal/delete-category-modal.component';
@@ -11,7 +12,11 @@ import { EditCategoryModalComponent } from './edit-category-modal/edit-category-
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.scss']
 })
-export class CategoryListComponent implements OnInit {
+export class CategoryListComponent implements OnInit, OnDestroy {
+
+  destory: Subject<boolean> = new Subject();
+
+  cdkDragDisabled: boolean = false;
 
   @Input() categories!: any[] | null;
 
@@ -21,7 +26,13 @@ export class CategoryListComponent implements OnInit {
     ) {
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.initSortCategories();
+  }
+
+  ngOnDestroy(): void {
+    this.destory.next(true);
+  }
 
   createCategory(): void {
     this.matDialog.open(CreateCategoryModalComponent, { width: '400px' });
@@ -40,9 +51,26 @@ export class CategoryListComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<any[]>) {
+    this.cdkDragDisabled = true;
     const categories = this.categories ?? []; 
     moveItemInArray(categories, event.previousIndex, event.currentIndex);
     this.categories?.map((category, index) => category.sortId = index);
     this.workshopEditorService.sortCategories(categories);
+  }
+
+  initSortCategories(): void {
+    this.workshopEditorService.sortCategoryFormError$
+    .pipe(takeUntil(this.destory))
+    .subscribe((error) => {
+      console.log({ error });
+      this.cdkDragDisabled = true;
+    });
+    
+    this.workshopEditorService.sortCategoryFormSuccess$
+    .pipe(takeUntil(this.destory))
+    .subscribe((category) => {
+      console.log({ category });
+      this.cdkDragDisabled = true;
+    });
   }
 }

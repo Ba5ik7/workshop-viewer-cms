@@ -8,6 +8,7 @@
 <mat-nav-list cdkDropList class="category-list" (cdkDropListDropped)="drop($event)">
   <a mat-list-item cdkDrag *ngFor="let category of categories"
     class="category-item"
+    [cdkDragDisabled]="cdkDragDisabled"
     [routerLink]="'./' + category.id + '/' + category.workshopDocuments[0]._id"
     routerLinkActive="workshop-menu-nav-item-selected">
     <mat-icon>drag_indicator</mat-icon>
