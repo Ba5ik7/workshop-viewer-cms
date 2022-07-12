@@ -63,14 +63,14 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.destory))
     .subscribe((error) => {
       console.log({ error });
-      this.cdkDragDisabled = true;
+      this.cdkDragDisabled = false;
     });
     
     this.workshopEditorService.sortCategoryFormSuccess$
     .pipe(takeUntil(this.destory))
     .subscribe((category) => {
       console.log({ category });
-      this.cdkDragDisabled = true;
+      this.cdkDragDisabled = false;
     });
   }
 }
