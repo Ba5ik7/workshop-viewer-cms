@@ -46,7 +46,7 @@
   .workshop-controls-panel {
     border-left: 1px solid mat.get-color-from-palette($foreground, divider);
 
-    category-list {
+    category-list, page-list {
       border-bottom: 1px solid mat.get-color-from-palette($foreground, divider);
     }
 
