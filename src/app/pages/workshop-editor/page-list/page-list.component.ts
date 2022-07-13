@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@a
 import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { CreatePageModalComponent } from './create-page-modal/create-page-modal.component';
+import { DeletePageModalComponent } from './delete-page-modal/delete-page-modal.component';
 
 @Component({
   selector: 'page-list',
@@ -30,7 +31,11 @@ export class PageListComponent implements OnInit, OnDestroy {
     this.matDialog.open(CreatePageModalComponent, { width: '400px' });
   }
 
-  editPage(event: Event, category: any): void { }
+  editPage(event: Event, page: any): void { }
 
-  deletePage(event: Event, category: any): void { }
+  deletePage(event: Event, page: any): void {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    this.matDialog.open(DeletePageModalComponent, { width: '400px', data: { page }});
+  }
 }

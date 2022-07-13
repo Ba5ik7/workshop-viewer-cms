@@ -55,6 +55,7 @@ export class WorkshopEditorService {
     });
   }
 
+
   sortCategoryFormErrorSubject = new Subject<number>();
   sortCategoryFormError$ = this.sortCategoryFormErrorSubject.asObservable();
 
@@ -81,6 +82,21 @@ export class WorkshopEditorService {
     .subscribe({
       next: (createdPage) => this.createPageFormSuccessSubject.next(createdPage),
       error: (httpError: HttpErrorResponse) => this.createPageFormErrorSubject.next(httpError.status)
+    });
+  }
+
+
+  deletePageFormErrorSubject = new Subject<number>();
+  deletePageFormError$ = this.deletePageFormErrorSubject.asObservable();
+
+  deletePageFormSuccessSubject = new Subject<string>();
+  deletePageFormSuccess$ = this.deletePageFormSuccessSubject.asObservable();
+
+  deletePage(_id: string): void {
+    this.httpClient.post<Category>('/api/navigation/page/delete-page', { _id })
+    .subscribe({
+      next: () => this.deletePageFormSuccessSubject.next(_id),
+      error: (httpError: HttpErrorResponse) => this.deletePageFormErrorSubject.next(httpError.status)
     });
   }
 }

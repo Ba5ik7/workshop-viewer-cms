@@ -18,6 +18,7 @@ import { CreateCategoryModalComponent } from './category-list/create-category-mo
 import { PageListComponent } from './page-list/page-list.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CreatePageModalComponent } from './page-list/create-page-modal/create-page-modal.component';
+import { DeletePageModalComponent } from './page-list/delete-page-modal/delete-page-modal.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { CreatePageModalComponent } from './page-list/create-page-modal/create-p
     EditCategoryModalComponent,
     CreateCategoryModalComponent,
     PageListComponent,
-    CreatePageModalComponent
+    CreatePageModalComponent,
+    DeletePageModalComponent
   ],
   imports: [
     CommonModule,
