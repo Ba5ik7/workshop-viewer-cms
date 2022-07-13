@@ -1,6 +1,6 @@
 <div class="form-container">
   <form [formGroup]="deleteCategoryForm">
-    <h2 mat-dialog-title>Delete the {{data.category.name}} Category?</h2>
+    <h2 mat-dialog-title>Delete {{data.category.name}}?</h2>
     <p class="warn">This action will delete the category and all associate workshops. This action cannot be undone.</p>
     <p>Type in the category name to continue.</p>
     <span class="form-level-error-message">{{deleteCategoryFormLevelMessage}}</span>
