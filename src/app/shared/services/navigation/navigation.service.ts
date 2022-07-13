@@ -120,11 +120,15 @@ export class NavigationService {
     // Once they are this method will be call again.
     if(this.categories === undefined) return;
     const currentCategoryObject = this.categories.find(({ id }) => id === category) ?? { sortId: 1 };
-    this.workshopDocumentsSub.next(currentCategoryObject?.workshopDocuments);
-    this.workshopDocuments = currentCategoryObject?.workshopDocuments ?? [];
+    this.setWorkshops(currentCategoryObject?.workshopDocuments);
     this.categorySub.next(currentCategoryObject);
     this.categoryTitleSub.next(currentCategoryObject?.name ?? 'Categories');
     this.category = currentCategoryObject;
+  }
+
+  setWorkshops(workshopDocuments: CategoryWorkshopDocument[] = []): void {
+    this.workshopDocumentsSub.next(workshopDocuments);
+    this.workshopDocuments = workshopDocuments;
   }
   
   public setCategories(categories: Category[]): void {
