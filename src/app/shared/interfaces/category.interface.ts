@@ -8,6 +8,12 @@ export interface ExampleSpecs {
   exclude?: string[];
 }
 
+export interface CategoryWorkshopDocument {
+  _id?: string;
+  name?: string;
+  sortId: number;
+}
+
 export interface Category {
   _id?: string;
   /** Id of the doc item. Used in the URL for linking to the doc. */
@@ -30,5 +36,5 @@ export interface Category {
   /** List of additional API docs. */
   additionalApiDocs?: AdditionalApiDoc[];
   /** List of object ids for html documents */
-  workshopDocuments?: string[];
+  workshopDocuments?: CategoryWorkshopDocument[];
 }

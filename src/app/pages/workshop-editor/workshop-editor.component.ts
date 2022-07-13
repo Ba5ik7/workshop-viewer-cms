@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { distinct, map, mergeMap, Observable, Subject, takeUntil, toArray } from 'rxjs';
-import { Category } from 'src/app/shared/interfaces/category.interface';
+import { Category, CategoryWorkshopDocument } from 'src/app/shared/interfaces/category.interface';
 import { NavigationService } from 'src/app/shared/services/navigation/navigation.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class WorkshopEditorComponent implements OnInit, OnDestroy {
   categories!: Observable<Category[]>;
   currentCategory!: Observable<any>;
   
-  workshopDocuments!: Observable<string[]>;
+  workshopDocuments!: Observable<CategoryWorkshopDocument[]>;
 
   routerIsActivate: boolean = false;
 
@@ -32,7 +32,7 @@ export class WorkshopEditorComponent implements OnInit, OnDestroy {
     );
   
     this.currentCategory = navigationService.category$;
-    this.workshopDocuments = navigationService.workshopDocuments$
+    this.workshopDocuments = navigationService.workshopDocuments$; 
   }
 
   ngOnInit(): void {

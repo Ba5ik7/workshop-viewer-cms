@@ -1,8 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, filter, lastValueFrom, Observable, OperatorFunction, pipe, UnaryFunction } from 'rxjs';
-import { Category } from '../../interfaces/category.interface';
+import { Category, CategoryWorkshopDocument } from '../../interfaces/category.interface';
 import { Section } from '../../interfaces/section.interface';
+import { WorkshopDocument } from '../../interfaces/workshop-document.interface';
 
 // RXJS Doesn't have something to filter out null and undefined values
 function filterNullish<T>(): UnaryFunction<Observable<T | null | undefined>, Observable<T>> {
@@ -40,7 +41,8 @@ export class NavigationService {
   
   categorySub = new BehaviorSubject<any>(undefined);
   category$: Observable<any> = this.categorySub.asObservable();
-  
+  category!: Category;
+
   sectionRouteSub = new BehaviorSubject<string | undefined>(undefined);
   sectionRoute$: Observable<any> = this.sectionRouteSub.asObservable();
   sectionRoute: string = '';
@@ -62,7 +64,8 @@ export class NavigationService {
   categoryTitle$: Observable<any> = this.categoryTitleSub.asObservable();
 
   workshopDocumentsSub = new BehaviorSubject<any>(undefined);
-  workshopDocuments$: Observable<string[]> = this.workshopDocumentsSub.asObservable();
+  workshopDocuments$: Observable<CategoryWorkshopDocument[]> = this.workshopDocumentsSub.asObservable();
+  workshopDocuments!: CategoryWorkshopDocument[];
 
 
   constructor(private httpClient: HttpClient) { }
@@ -116,10 +119,12 @@ export class NavigationService {
     // When the pages frist loads we need to wait for the categories to be set
     // Once they are this method will be call again.
     if(this.categories === undefined) return;
-    const currentCategoryObject = this.categories.find(({ id }) => id === category);
+    const currentCategoryObject = this.categories.find(({ id }) => id === category) ?? { sortId: 1 };
     this.workshopDocumentsSub.next(currentCategoryObject?.workshopDocuments);
+    this.workshopDocuments = currentCategoryObject?.workshopDocuments ?? [];
     this.categorySub.next(currentCategoryObject);
     this.categoryTitleSub.next(currentCategoryObject?.name ?? 'Categories');
+    this.category = currentCategoryObject;
   }
   
   public setCategories(categories: Category[]): void {

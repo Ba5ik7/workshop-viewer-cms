@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Subject } from 'rxjs';
+import { CreatePageModalComponent } from './create-page-modal/create-page-modal.component';
 
 @Component({
   selector: 'page-list',
@@ -6,16 +9,26 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
   styleUrls: ['./page-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PageListComponent implements OnInit {
+export class PageListComponent implements OnInit, OnDestroy {
+
+  destory: Subject<boolean> = new Subject();
 
   @Input() pages!: any[] | null;
   @Input() currentCategory!: any | null;
 
-  constructor() { }
+  constructor(
+    public matDialog: MatDialog,
+  ) { }
 
   ngOnInit(): void { }
 
-  createPage(): void { }
+  ngOnDestroy(): void {
+    this.destory.next(true);
+  }
+
+  createPage(): void {
+    this.matDialog.open(CreatePageModalComponent, { width: '400px' });
+  }
 
   editPage(event: Event, category: any): void { }
 

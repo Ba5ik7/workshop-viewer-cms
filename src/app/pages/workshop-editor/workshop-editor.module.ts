@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CreateCategoryModalComponent } from './category-list/create-category-modal/create-category-modal.component';
 import { PageListComponent } from './page-list/page-list.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CreatePageModalComponent } from './page-list/create-page-modal/create-page-modal.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     DeleteCategoryModalComponent,
     EditCategoryModalComponent,
     CreateCategoryModalComponent,
-    PageListComponent
+    PageListComponent,
+    CreatePageModalComponent
   ],
   imports: [
     CommonModule,

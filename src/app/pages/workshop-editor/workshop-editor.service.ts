@@ -68,4 +68,19 @@ export class WorkshopEditorService {
       error: (httpError: HttpErrorResponse) => this.sortCategoryFormErrorSubject.next(httpError.status)
     });
   }
+
+
+  createPageFormErrorSubject = new Subject<number>();
+  createPageFormError$ = this.createPageFormErrorSubject.asObservable();
+
+  createPageFormSuccessSubject = new Subject<WorkshopDocument>();
+  createPageFormSuccess$ = this.createPageFormSuccessSubject.asObservable();
+
+  createPage(page: WorkshopDocument): void {
+    this.httpClient.post<WorkshopDocument>('/api/navigation/page/create-page', page)
+    .subscribe({
+      next: (createdPage) => this.createPageFormSuccessSubject.next(createdPage),
+      error: (httpError: HttpErrorResponse) => this.createPageFormErrorSubject.next(httpError.status)
+    });
+  }
 }
