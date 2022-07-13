@@ -16,6 +16,10 @@ const routes: Routes = [
         loadChildren: () => import('../users/users.module').then(m => m.UsersModule)
       },
       {
+        path: 'settings',
+        loadChildren: () => import('../settings/settings.module').then(m => m.SettingsModule)
+      },
+      {
         path: 'workshop-editor',
         loadChildren: () => import('../workshop-editor/workshop-editor.module').then(m => m.WorkshopEditorModule)
       }
