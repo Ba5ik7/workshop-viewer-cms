@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subject, take, takeUntil } from 'rxjs';
 import { Category } from 'src/app/shared/interfaces/category.interface';
+import { WorkshopDocument } from 'src/app/shared/interfaces/workshop-document.interface';
 import { NavigationService } from 'src/app/shared/services/navigation/navigation.service';
 import { MatchStringValidator } from 'src/app/shared/validators/match-string.validator';
 import { WorkshopEditorService } from '../../workshop-editor.service';
@@ -31,6 +32,8 @@ export class DeletePageModalComponent implements OnInit {
   }
 
   deletePageForm: FormGroup = this.formBuilder.group({
+    _id: [this.data.page._id],
+    category:[this.navigationService.category],
     name: ['', [Validators.required]]
   }, { validators: MatchStringValidator('name', this.data.page.name) });
 
@@ -62,23 +65,25 @@ export class DeletePageModalComponent implements OnInit {
     
     this.workshopEditorService.deletePageFormSuccess$
     .pipe(takeUntil(this.destory))
-    .subscribe((_id) => this.deletePageSuccuessful(_id));
+    .subscribe((page) => this.deletePageSuccuessful(page));
   }
 
-  deletePageSuccuessful(_id: string): void {
+  deletePageSuccuessful(page: WorkshopDocument): void {
     this.requestInProgress();
-    this.navigationService.categories$
-    .pipe(take(1))
-    .subscribe((categories: Category[]) => {
-      const newCategories = categories.filter((oldCategory) => oldCategory._id !== _id);
-      this.navigationService.setCategories(newCategories);
-    });
+    // this.navigationService.categories$
+    // .pipe(take(1))
+    // .subscribe((categories: Category[]) => {
+      // const newCategories = categories.filter((oldCategory) => oldCategory._id !== _id);
+      // this.navigationService.setCategories(newCategories);
+    // });
+    console.log(page);
+    
     this.dialogRef.close();
   }
 
   deletePage() {
     this.requestInProgress(true);
-    this.workshopEditorService.deletePage(this.data.page._id);
+    this.workshopEditorService.deletePage(this.deletePageForm.value);
   }
 
   requestInProgress(predicate: boolean = false): void {

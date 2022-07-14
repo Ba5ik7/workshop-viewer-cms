@@ -89,13 +89,13 @@ export class WorkshopEditorService {
   deletePageFormErrorSubject = new Subject<number>();
   deletePageFormError$ = this.deletePageFormErrorSubject.asObservable();
 
-  deletePageFormSuccessSubject = new Subject<string>();
+  deletePageFormSuccessSubject = new Subject<WorkshopDocument>();
   deletePageFormSuccess$ = this.deletePageFormSuccessSubject.asObservable();
 
-  deletePage(_id: string): void {
-    this.httpClient.post<Category>('/api/navigation/page/delete-page', { _id })
+  deletePage(page: WorkshopDocument): void {
+    this.httpClient.post<WorkshopDocument>('/api/navigation/page/delete-page-and-update-category', page)
     .subscribe({
-      next: () => this.deletePageFormSuccessSubject.next(_id),
+      next: () => this.deletePageFormSuccessSubject.next(page),
       error: (httpError: HttpErrorResponse) => this.deletePageFormErrorSubject.next(httpError.status)
     });
   }
