@@ -69,15 +69,13 @@ export class DeletePageModalComponent implements OnInit {
   }
 
   deletePageSuccuessful(page: WorkshopDocument): void {
+    const newCategory = page.category;
+    const newCategories = this.navigationService.categories.filter(({ id }) => id !== page.category?.id);
+    const newWorkshopDocuments = page.category?.workshopDocuments?.filter(({ _id }) => _id !== page._id);
+    if(newCategory?.workshopDocuments) newCategory.workshopDocuments = newWorkshopDocuments;
+    if(newCategory) newCategories.push(newCategory);
+    this.navigationService.setCategories(newCategories);
     this.requestInProgress();
-    // this.navigationService.categories$
-    // .pipe(take(1))
-    // .subscribe((categories: Category[]) => {
-      // const newCategories = categories.filter((oldCategory) => oldCategory._id !== _id);
-      // this.navigationService.setCategories(newCategories);
-    // });
-    console.log(page);
-    
     this.dialogRef.close();
   }
 
