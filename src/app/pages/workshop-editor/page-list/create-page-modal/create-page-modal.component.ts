@@ -58,7 +58,7 @@ export class CreatePageModalComponent implements OnInit, OnDestroy {
   
     this.workshopEditorService.createPageFormError$
     .pipe(takeUntil(this.destory))
-    .subscribe((error) => {      
+    .subscribe((error) => {
       this.requestInProgress();
       this.createPageFormLevelMessage = this.errorMessages['httpFailure'];
       this.changeDetectorRef.markForCheck();

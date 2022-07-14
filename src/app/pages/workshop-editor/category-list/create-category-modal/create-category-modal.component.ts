@@ -58,7 +58,7 @@ export class CreateCategoryModalComponent implements OnInit, OnDestroy {
   
     this.workshopEditorService.createCategoryFormError$
     .pipe(takeUntil(this.destory))
-    .subscribe((error) => {      
+    .subscribe((error) => {
       this.requestInProgress();
       this.createCategoryFormLevelMessage = this.errorMessages['httpFailure'];
       this.changeDetectorRef.markForCheck();

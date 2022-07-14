@@ -58,7 +58,7 @@ export class EditCategoryModalComponent implements OnInit, OnDestroy {
   
     this.workshopEditorService.editCategoryFormError$
     .pipe(takeUntil(this.destory))
-    .subscribe((error) => {      
+    .subscribe((error) => {
       this.requestInProgress();
       this.editCategoryFormLevelMessage = this.errorMessages['httpFailure'];
       this.changeDetectorRef.markForCheck();

@@ -54,7 +54,7 @@ export class DeleteCategoryModalComponent implements OnInit {
   
     this.workshopEditorService.deleteCategoryFormError$
     .pipe(takeUntil(this.destory))
-    .subscribe((error) => {      
+    .subscribe((error) => {
       this.requestInProgress();
       this.deleteCategoryFormLevelMessage = this.errorMessages['httpFailure'];
       this.changeDetectorRef.markForCheck();

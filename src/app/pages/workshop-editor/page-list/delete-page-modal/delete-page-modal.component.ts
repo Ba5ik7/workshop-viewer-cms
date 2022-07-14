@@ -57,7 +57,7 @@ export class DeletePageModalComponent implements OnInit {
   
     this.workshopEditorService.deletePageFormError$
     .pipe(takeUntil(this.destory))
-    .subscribe((error) => {      
+    .subscribe((error) => {
       this.requestInProgress();
       this.deletePageFormLevelMessage = this.errorMessages['httpFailure'];
       this.changeDetectorRef.markForCheck();
