@@ -70,9 +70,11 @@ export class CreatePageModalComponent implements OnInit, OnDestroy {
   }
 
   createPageSuccuessful(category: Category): void {
+    const newCategories = this.navigationService.categories.filter(({ id }) => id !== category.id);
+    newCategories.push(category);
+    this.navigationService.setCategories(newCategories);
     this.requestInProgress();
     this.dialogRef.close();
-    this.navigationService.setWorkshops(category.workshopDocuments);
   }
 
   createPage() {
