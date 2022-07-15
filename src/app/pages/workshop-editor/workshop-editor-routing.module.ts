@@ -8,6 +8,15 @@ const routes: Routes = [
     component: WorkshopEditorComponent,
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'workshop-category-list'
+      },
+      {
+        path: 'workshop-category-list',
+        loadChildren: () => import('./workshop-category-list/workshop-category-list.module').then(m => m.WorkshopCategoryListModule)
+      },
+      {
         path: ':categoryId',
         loadChildren: () => import('./workshop-detail/workshop-detail.module').then(m => m.WorkshopDetailModule)
       },
