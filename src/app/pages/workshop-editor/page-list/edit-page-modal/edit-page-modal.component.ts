@@ -29,12 +29,12 @@ export class EditPageModalComponent implements OnInit, OnDestroy {
   }
 
   editPageForm: FormGroup = this.formBuilder.group({
-    _id: [this.data.category?._id, [Validators.required]],
-    name: [this.data.category?.name, [Validators.required]]
+    _id: [this.data.page?._id, [Validators.required]],
+    name: [this.data.page?.name, [Validators.required]]
   });
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { category: any },
+    @Inject(MAT_DIALOG_DATA) public data: { page: any },
     private dialogRef: MatDialogRef<EditPageModalComponent>,
     private changeDetectorRef: ChangeDetectorRef,
     private workshopEditorService: WorkshopEditorService,
