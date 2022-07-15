@@ -5,11 +5,12 @@ import { WorkshopViewerModule } from 'src/app/shared/components/workshop-viewer/
 import { RouterModule } from '@angular/router';
 import { WorkshopDetailRoutingModule } from './workshop-detail-routing.module';
 import { MatDividerModule } from '@angular/material/divider';
+import { DetailOverviewComponent } from './detail-overview/detail-overview.component';
 
 
 
 @NgModule({
-  declarations: [WorkshopDetailComponent],
+  declarations: [WorkshopDetailComponent, DetailOverviewComponent],
   exports: [WorkshopDetailComponent],
   imports: [
     CommonModule,

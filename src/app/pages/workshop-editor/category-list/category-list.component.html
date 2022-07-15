@@ -9,7 +9,7 @@
   <a mat-list-item cdkDrag *ngFor="let category of categories"
     class="category-item"
     [cdkDragDisabled]="cdkDragDisabled"
-    [routerLink]="'./' + category.id + '/' + category.workshopDocuments[0]._id"
+    [routerLink]="'./' + category.id"
     routerLinkActive="workshop-menu-nav-item-selected">
     <mat-icon>drag_indicator</mat-icon>
     {{category.name}}
