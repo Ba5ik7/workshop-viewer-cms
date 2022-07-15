@@ -99,4 +99,19 @@ export class WorkshopEditorService {
       error: (httpError: HttpErrorResponse) => this.deletePageFormErrorSubject.next(httpError.status)
     });
   }
+
+
+  editPageFormErrorSubject = new Subject<number>();
+  editPageFormError$ = this.editPageFormErrorSubject.asObservable();
+
+  editPageFormSuccessSubject = new Subject<WorkshopDocument>();
+  editPageFormSuccess$ = this.editPageFormSuccessSubject.asObservable();
+
+  editPageNameAndSummary(page: WorkshopDocument): void {
+    this.httpClient.post<WorkshopDocument>('/api/navigation/page/edit-page-name', page)
+    .subscribe({
+      next: () => this.editPageFormSuccessSubject.next(page),
+      error: (httpError: HttpErrorResponse) => this.editPageFormErrorSubject.next(httpError.status)
+    });
+  }
 }
