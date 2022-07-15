@@ -104,13 +104,13 @@ export class WorkshopEditorService {
   editPageFormErrorSubject = new Subject<number>();
   editPageFormError$ = this.editPageFormErrorSubject.asObservable();
 
-  editPageFormSuccessSubject = new Subject<WorkshopDocument>();
+  editPageFormSuccessSubject = new Subject<Category>();
   editPageFormSuccess$ = this.editPageFormSuccessSubject.asObservable();
 
   editPageNameAndSummary(page: WorkshopDocument): void {
-    this.httpClient.post<WorkshopDocument>('/api/navigation/page/edit-page-name', page)
+    this.httpClient.post<Category>('/api/navigation/page/edit-page-name-update-category', page)
     .subscribe({
-      next: () => this.editPageFormSuccessSubject.next(page),
+      next: (category) => this.editPageFormSuccessSubject.next(category),
       error: (httpError: HttpErrorResponse) => this.editPageFormErrorSubject.next(httpError.status)
     });
   }

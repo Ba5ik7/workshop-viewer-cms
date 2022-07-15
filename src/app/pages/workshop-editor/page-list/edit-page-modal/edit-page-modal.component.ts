@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subject, take, takeUntil } from 'rxjs';
 import { Category } from 'src/app/shared/interfaces/category.interface';
+import { WorkshopDocument } from 'src/app/shared/interfaces/workshop-document.interface';
 import { NavigationService } from 'src/app/shared/services/navigation/navigation.service';
 import { WorkshopEditorService } from '../../workshop-editor.service';
 
@@ -29,7 +30,8 @@ export class EditPageModalComponent implements OnInit, OnDestroy {
   }
 
   editPageForm: FormGroup = this.formBuilder.group({
-    _id: [this.data.page?._id, [Validators.required]],
+    _id: [this.data.page._id],
+    category:[this.navigationService.category],
     name: [this.data.page?.name, [Validators.required]]
   });
 
@@ -69,14 +71,10 @@ export class EditPageModalComponent implements OnInit, OnDestroy {
   }
 
   editPageSuccuessful(category: Category): void {
+    const newCategories = this.navigationService.categories.filter(({ id }) => id !== category?.id);
+    newCategories.push(category);
+    this.navigationService.setCategories(newCategories);
     this.requestInProgress();
-    this.navigationService.categories$
-    .pipe(take(1))
-    .subscribe((categories: Category[]) => {
-      const newCategories = categories.filter((oldCategory) => oldCategory._id !== category._id);
-      newCategories.push(category);
-      this.navigationService.setCategories(newCategories);
-    });
     this.dialogRef.close();
   }
 
