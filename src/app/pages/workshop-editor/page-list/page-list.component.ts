@@ -79,11 +79,7 @@ export class PageListComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.destory))
     .subscribe((category) => {
       this.snackBar.open('😸 Categories new order updated', undefined, this.snackBarOptiions);
-      this.cdkDragDisabled = false;
-      console.log({
-        cdkDragDisabled: this.cdkDragDisabled
-      });
-      
+      this.cdkDragDisabled = false;      
     });
   }
 }
