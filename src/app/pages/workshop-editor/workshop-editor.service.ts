@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, shareReplay, Subject, tap } from 'rxjs';
 import { Category } from 'src/app/shared/interfaces/category.interface';
@@ -112,6 +112,22 @@ export class WorkshopEditorService {
     .subscribe({
       next: (category) => this.editPageFormSuccessSubject.next(category),
       error: (httpError: HttpErrorResponse) => this.editPageFormErrorSubject.next(httpError.status)
+    });
+  }
+
+  sortPagesFormErrorSubject = new Subject<number>();
+  sortPagesFormError$ = this.sortPagesFormErrorSubject.asObservable();
+
+  sortPagesFormSuccessSubject = new Subject<Category[]>();
+  sortPagesFormSuccess$ = this.sortPagesFormSuccessSubject.asObservable();
+
+  sortPages(pages: WorkshopDocument[], categoryId: string = ''): void {
+    const params = new HttpParams().set('categoryId', categoryId);
+    this.httpClient
+    .post<WorkshopDocument[]>('/api/navigation/page/sort-pages', pages, { params })
+    .subscribe({
+      next: () => this.sortPagesFormSuccessSubject.next(pages),
+      error: (httpError: HttpErrorResponse) => this.sortPagesFormErrorSubject.next(httpError.status)
     });
   }
 }

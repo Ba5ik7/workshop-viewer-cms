@@ -5,10 +5,13 @@
   </a>
   <mat-divider></mat-divider>
 </mat-nav-list>
-<mat-nav-list class="page-list">
-  <a mat-list-item *ngFor="let page of pages" 
+<mat-nav-list cdkDropList class="page-list" (cdkDropListDropped)="drop($event)">
+  <a mat-list-item cdkDrag *ngFor="let page of pages"
+    class="page-item"
+    [cdkDragDisabled]="cdkDragDisabled"
     [routerLink]="'./' + currentCategory.id + '/' + page._id"
     routerLinkActive="workshop-menu-nav-item-selected">
+    <mat-icon>drag_indicator</mat-icon>
     {{page.name}}
     <div class="flex-spacer"></div>
     <mat-icon class="edit-icon" (click)="editPage($event, page)">edit</mat-icon>

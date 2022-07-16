@@ -10,6 +10,7 @@
   $nav-background-opacity: if($is-dark-theme, 0.2, 0.03);
   $nav-background-focus-opacity: if($is-dark-theme, 0.25, 0.08);
 
+  .page-item.cdk-drag-preview,
   .category-item.cdk-drag-preview {
     display: block;
     overflow: hidden;
