@@ -6,6 +6,11 @@
   <mat-divider></mat-divider>
 </mat-nav-list>
 <mat-nav-list cdkDropList class="category-list" (cdkDropListDropped)="drop($event)">
+  <a mat-list-item routerLink="./workshop-category-list"
+    routerLinkActive="workshop-menu-nav-item-selected">
+    <mat-icon>view_module</mat-icon>
+    Categories List
+  </a>  
   <a mat-list-item cdkDrag *ngFor="let category of categories"
     class="category-item"
     [cdkDragDisabled]="cdkDragDisabled"
