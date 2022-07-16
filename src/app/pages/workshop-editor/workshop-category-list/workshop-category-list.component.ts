@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { map, Observable, Subject } from 'rxjs';
 import { Category } from 'src/app/shared/interfaces/category.interface';
 import { NavigationService } from 'src/app/shared/services/navigation/navigation.service';
@@ -6,7 +6,8 @@ import { NavigationService } from 'src/app/shared/services/navigation/navigation
 @Component({
   selector: 'app-workshop-category-list',
   templateUrl: './workshop-category-list.component.html',
-  styleUrls: ['./workshop-category-list.component.scss']
+  styleUrls: ['./workshop-category-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WorkshopCategoryListComponent implements OnInit, OnDestroy {
 
@@ -14,11 +15,11 @@ export class WorkshopCategoryListComponent implements OnInit, OnDestroy {
 
   categories!: Observable<Category[]>;
 
-  constructor(navigationService: NavigationService) {
-    this.categories = navigationService.categories$;
-  }
+  constructor(private navigationService: NavigationService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.categories = this.navigationService.categories$;
+  }
 
   ngOnDestroy(): void {
     this.destory.next(true);
