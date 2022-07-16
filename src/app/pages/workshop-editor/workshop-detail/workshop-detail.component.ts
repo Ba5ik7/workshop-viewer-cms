@@ -1,7 +1,7 @@
 import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subject, takeUntil } from 'rxjs';
-import { NavigationService } from '../../../shared/services/navigation/navigation.service';
+import { Observable, Subject, take, takeUntil } from 'rxjs';
+import { NavigationService, filterNullish } from '../../../shared/services/navigation/navigation.service';
 
 @Component({
   selector: 'workshop-detail',
@@ -15,12 +15,23 @@ export class WorkshopDetailComponent implements OnDestroy {
 
   workshopDocument!: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private navigationService: NavigationService) {    
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private navigationService: NavigationService
+  ) {    
     this.activatedRoute.params
     .pipe(takeUntil(this.destory))
     .subscribe((data) => {
       this.navigationService.categoryRouteSub.next(data['categoryId']);
-      this.workshopDocument = data['workshopId'];
+      if(data['workshopId']) {
+        this.workshopDocument = data['workshopId'];
+      } else {
+        this.navigationService.category$
+        .pipe(take(1), filterNullish())
+        .subscribe((category) => {
+          this.workshopDocument = category.workshopDocuments[0]?._id;
+        });
+      }
     });
   }
 

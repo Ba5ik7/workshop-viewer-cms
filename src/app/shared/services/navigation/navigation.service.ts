@@ -6,7 +6,7 @@ import { Section } from '../../interfaces/section.interface';
 import { WorkshopDocument } from '../../interfaces/workshop-document.interface';
 
 // RXJS Doesn't have something to filter out null and undefined values
-function filterNullish<T>(): UnaryFunction<Observable<T | null | undefined>, Observable<T>> {
+export function filterNullish<T>(): UnaryFunction<Observable<T | null | undefined>, Observable<T>> {
   return pipe(
     filter(x => x != null) as OperatorFunction<T | null |  undefined, T>
   );
