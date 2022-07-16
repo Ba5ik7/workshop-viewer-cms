@@ -27,10 +27,15 @@ export class WorkshopViewerComponent implements OnInit, OnDestroy {
 
   currentDocument!: string
 
+  pageNotFound:boolean =  false;
+
   @Input('workshopDocument')
   set workshopDocument(currentDocument: string | null) {
     // Null start :(
-    if(currentDocument === null || currentDocument === undefined) return;
+    if(currentDocument === null || currentDocument === undefined) {
+      this.pageNotFound = true;
+      return;
+    }
     this.currentDocument = currentDocument
     this.fetchWorkshopDocuments();
   }

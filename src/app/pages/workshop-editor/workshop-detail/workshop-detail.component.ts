@@ -27,7 +27,7 @@ export class WorkshopDetailComponent implements OnDestroy {
         this.workshopDocument = data['workshopId'];
       } else {
         this.navigationService.category$
-        .pipe(take(1), filterNullish())
+        .pipe(filterNullish(), take(1))
         .subscribe((category) => {
           this.workshopDocument = category.workshopDocuments[0]?._id;
         });

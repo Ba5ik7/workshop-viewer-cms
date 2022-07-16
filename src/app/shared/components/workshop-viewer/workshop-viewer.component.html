@@ -1,4 +1,7 @@
-<!-- <div class="workshop-viewer-progress-loader-container">
-    <mat-spinner class="progress-loader" color="accent"></mat-spinner>
-</div> -->
-Loading...
+<ng-container *ngIf="!pageNotFound">
+    Loading...
+</ng-container>
+<ng-container *ngIf="pageNotFound">
+    <h1>Page Not Found</h1>
+    <p>Create a new page or select another page.</p>
+</ng-container>
