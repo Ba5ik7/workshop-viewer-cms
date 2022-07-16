@@ -6,8 +6,7 @@ import { NavigationService } from 'src/app/shared/services/navigation/navigation
 @Component({
   selector: 'app-workshop-category-list',
   templateUrl: './workshop-category-list.component.html',
-  styleUrls: ['./workshop-category-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./workshop-category-list.component.scss']
 })
 export class WorkshopCategoryListComponent implements OnInit, OnDestroy {
 
