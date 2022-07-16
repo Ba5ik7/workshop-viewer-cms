@@ -15,11 +15,11 @@ export class WorkshopCategoryListComponent implements OnInit, OnDestroy {
 
   categories!: Observable<Category[]>;
 
-  constructor(private navigationService: NavigationService) { }
-
-  ngOnInit(): void {
-    this.categories = this.navigationService.categories$;
+  constructor(navigationService: NavigationService) {
+    this.categories = navigationService.categories$;
   }
+
+  ngOnInit(): void { }
 
   ngOnDestroy(): void {
     this.destory.next(true);
