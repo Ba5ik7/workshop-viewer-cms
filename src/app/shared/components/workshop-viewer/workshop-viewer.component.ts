@@ -9,8 +9,10 @@ import {
   OnDestroy,
   OnInit,
   SecurityContext,
-  ViewContainerRef } from '@angular/core';
+  ViewContainerRef, 
+  ViewEncapsulation} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+// import { QuillEditorComponent } from 'ngx-quill';
 import { Subject, takeUntil } from 'rxjs';
 import { WorkshopDocument } from '../../interfaces/workshop-document.interface';
 import { CodeHighlighterComponent } from '../code-highlighter/code-highlighter.component';
@@ -21,7 +23,8 @@ import { WorkshopViewerService } from './workshop-viewer.service';
 @Component({
   selector: 'workshop-viewer-terrence-dusell',
   templateUrl: './workshop-viewer.component.html',
-  styleUrls: ['./workshop-viewer.component.scss']
+  styleUrls: ['./workshop-viewer.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class WorkshopViewerComponent implements OnInit, OnDestroy {
 
@@ -82,11 +85,23 @@ export class WorkshopViewerComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.destory))
     .subscribe((data) => {
       this.correctUrlPaths(data);
-      // this.elementRef.nativeElement.innerHTML = data.html;
-      // this.loadLiveExamples('workshop-live-example', LiveExampleComponent);
-      // this.loadCodeHighlighter('code-highlighter', CodeHighlighterComponent);
-      // this.loadNextPage();
+      this.elementRef.nativeElement.innerHTML = data.html;
+      this.loadLiveExamples('workshop-live-example', LiveExampleComponent);
+      this.loadCodeHighlighter('code-highlighter', CodeHighlighterComponent);
+      this.loadNextPage();
     });
+  }
+
+  private initQuill(): void {
+    // const quillElement = this.elementRef.nativeElement.querySelector('#workshop-quill');
+    // const portalHost = new DomPortalOutlet(quillElement, this.componentFactoryResolver, this.appRef, this.injector);
+    // const quillPortal = new ComponentPortal(QuillEditorComponent, this.viewContainerRef);
+    // const workshopQuillViewer = portalHost.attach(quillPortal);
+    // const workshopQuillComponent  = workshopQuillViewer.instance as QuillEditorComponent;
+    // console.log({
+    //   workshopQuillComponent
+    // });
+    // this.elementRef.nativeElement.innerHTML
   }
 
   private correctUrlPaths(data: WorkshopDocument): void {
