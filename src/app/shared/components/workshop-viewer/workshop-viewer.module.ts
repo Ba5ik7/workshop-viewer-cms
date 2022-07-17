@@ -5,6 +5,7 @@ import { WorkshopViewerService } from './workshop-viewer.service';
 import { LiveExampleComponent } from './live-example/live-example.component';
 import { CodeHighlighterModule } from '../code-highlighter/code-highlighter.module';
 import { NextPageComponent } from './next-page/next-page.component';
+import { QuillModule } from 'ngx-quill';
 
 
 
@@ -17,7 +18,8 @@ import { NextPageComponent } from './next-page/next-page.component';
   exports: [WorkshopViewerComponent],
   imports: [
     CommonModule,
-    CodeHighlighterModule
+    CodeHighlighterModule,
+    QuillModule.forRoot()
   ],
   providers: [WorkshopViewerService]
 })
