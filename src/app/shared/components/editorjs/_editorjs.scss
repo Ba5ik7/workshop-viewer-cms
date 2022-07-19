@@ -91,4 +91,8 @@
   .ce-block--selected .ce-block__content {
     background-color: rgba(mat.get-color-from-palette($primary, default), .4);
   }
+
+  .ce-paragraph.cdx-block {
+    padding: 0;
+  }
 }

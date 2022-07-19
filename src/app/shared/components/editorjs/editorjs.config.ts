@@ -2,14 +2,17 @@ import Header from '@editorjs/header';
 import List from '@editorjs/list';
 import Embed from '@editorjs/embed';
 import Marker from '@editorjs/marker';
+import { EditorConfig, LogLevels } from '@editorjs/editorjs';
 
-export const editorjsConfig = {
-
+export const editorjsConfig: EditorConfig = {
+  autofocus: true,
+  placeholder: 'Start creating your workshop...',
+  minHeight: 30,
   holder: 'editorjs',
   tools: {
-    embed : {
+    Embed : {
       class : Embed,
-      inlineToolbar: false,
+      inlineToolbar: true,
       config: {
         services: {
           youtube: true,
@@ -37,4 +40,3 @@ export const editorjsConfig = {
     }
   }
 }
-console.log('asdlkfjsdlkfj');
