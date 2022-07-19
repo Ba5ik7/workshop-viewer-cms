@@ -6,6 +6,7 @@ import { LiveExampleComponent } from './live-example/live-example.component';
 import { CodeHighlighterModule } from '../code-highlighter/code-highlighter.module';
 import { NextPageComponent } from './next-page/next-page.component';
 import { EditorjsModule } from '../editorjs/editorjs.module';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { EditorjsModule } from '../editorjs/editorjs.module';
   imports: [
     CommonModule,
     CodeHighlighterModule,
-    EditorjsModule
+    EditorjsModule,
+    MatIconModule
   ],
   providers: [WorkshopViewerService]
 })

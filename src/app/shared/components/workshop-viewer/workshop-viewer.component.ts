@@ -24,7 +24,7 @@ import { WorkshopViewerService } from './workshop-viewer.service';
   selector: 'workshop-viewer-terrence-dusell',
   templateUrl: './workshop-viewer.component.html',
   styleUrls: ['./workshop-viewer.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None
 })
 export class WorkshopViewerComponent implements OnInit, OnDestroy {
 
