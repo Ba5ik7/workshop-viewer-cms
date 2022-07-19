@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import EditorJS from '@editorjs/editorjs';
 import { debounceTime, Observable, skip, Subject, takeUntil } from 'rxjs';
 import { editorjsConfig } from './editorjs.config';
@@ -7,7 +7,8 @@ import { editorjsConfig } from './editorjs.config';
   selector: 'editorjs',
   templateUrl: './editorjs.component.html',
   styleUrls: ['./editorjs.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class EditorjsComponent implements OnInit, OnDestroy {
 
