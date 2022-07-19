@@ -2,7 +2,8 @@ import Header from '@editorjs/header';
 import List from '@editorjs/list';
 import Embed from '@editorjs/embed';
 import Marker from '@editorjs/marker';
-import { EditorConfig, LogLevels } from '@editorjs/editorjs';
+import InlineCode from '@editorjs/inline-code';
+import { EditorConfig } from '@editorjs/editorjs';
 
 export const editorjsConfig: EditorConfig = {
   autofocus: true,
@@ -10,6 +11,10 @@ export const editorjsConfig: EditorConfig = {
   minHeight: 30,
   holder: 'editorjs',
   tools: {
+    inlineCode: {
+      class: InlineCode,
+      shortcut: 'CMD+SHIFT+M',
+    },
     Embed : {
       class : Embed,
       inlineToolbar: true,
