@@ -50,15 +50,19 @@
     }
   }
 
-  .ce-popover__item--focused, .ce-settings__button, .cdx-settings-button  {
-    box-shadow: none;
-    // background: rgba(mat.get-color-from-palette($primary, default), 0.15)!important;
-    // color: color.adjust(
-    //   mat.get-color-from-palette($primary, default),
-    //   $lightness: if($is-dark-theme, 25%, 0%)
-    // );
+  .ce-settings__button, .cdx-settings-button {
     background: none!important;
     color: rgba(mat.get-color-from-palette($foreground, secondary-text), 0.65);
+  }
+
+
+  .ce-popover__item--focused, .cdx-settings-button--active  {
+    box-shadow: none;
+    background: rgba(mat.get-color-from-palette($primary, default), 0.15)!important;
+    color: color.adjust(
+      mat.get-color-from-palette($primary, default),
+      $lightness: if($is-dark-theme, 25%, 0%)
+    );
     &:hover {
       color: mat.get-color-from-palette($foreground, text);
       background: rgba(mat.get-color-from-palette($foreground, secondary-text), 0.04)!important;

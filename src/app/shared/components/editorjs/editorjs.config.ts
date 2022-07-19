@@ -7,6 +7,18 @@ export const editorjsConfig = {
 
   holder: 'editorjs',
   tools: {
+    embed : {
+      class : Embed,
+      inlineToolbar: false,
+      config: {
+        services: {
+          youtube: true,
+          gfycat: true,
+          twitter: true,
+          codepen: true
+        }
+      }
+    },
     Marker :{
       class : Marker,
       shortcut : 'CMD+SHIFT+M'
@@ -22,16 +34,7 @@ export const editorjsConfig = {
       inlineToolbar: [
         'link','bold'
       ]
-    },
-    embed : {
-      class : Embed,
-      inlineToolbar: false,
-      config: {
-        services: {
-          youtube: true,
-          coub: true
-        }
-      }
     }
   }
 }
+console.log('asdlkfjsdlkfj');
