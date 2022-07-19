@@ -13,7 +13,7 @@
   // border-right: 1px solid mat.get-color-from-palette($foreground, divider);
   // background: rgba(mat.get-color-from-palette($primary, default), 0.15);
   // color: map.get($foreground, secondary-text);
-  .ce-popover {
+  .ce-popover, .ce-settings {
     background-color: if($is-dark-theme, #424242, white);
     // background-color: white;
     // background-color: mat.get-color-from-palette($background, background);
@@ -36,13 +36,13 @@
     }
   }
 
-  .ce-popover__item-icon {
+  .ce-popover__item-icon, .ce-settings__button, .cdx-settings-button {
     border-radius: 4px;
     background: none;
     border: none;
   }
 
-  .ce-popover__item {
+  .ce-popover__item, .ce-settings__button, .cdx-settings-button {
     border-radius: 4px;
     &:hover {
       color: mat.get-color-from-palette($foreground, text);
@@ -50,7 +50,7 @@
     }
   }
 
-  .ce-popover__item--focused {
+  .ce-popover__item--focused, .ce-settings__button, .cdx-settings-button  {
     box-shadow: none;
     // background: rgba(mat.get-color-from-palette($primary, default), 0.15)!important;
     // color: color.adjust(
