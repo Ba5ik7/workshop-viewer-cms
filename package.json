@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
     "@editorjs/editorjs": "^2.25.0",
+    "@editorjs/underline": "^1.0.0",
     "@tmdjr/workshop-examples": "^0.0.1",
     "ngx-highlightjs": "^7.0.0",
     "rxjs": "~7.5.0",

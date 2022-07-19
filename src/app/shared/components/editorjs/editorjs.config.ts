@@ -3,6 +3,7 @@ import List from '@editorjs/list';
 import Embed from '@editorjs/embed';
 import Marker from '@editorjs/marker';
 import InlineCode from '@editorjs/inline-code';
+import Underline from '@editorjs/underline';
 import { EditorConfig } from '@editorjs/editorjs';
 
 export const editorjsConfig: EditorConfig = {
@@ -11,6 +12,7 @@ export const editorjsConfig: EditorConfig = {
   minHeight: 30,
   holder: 'editorjs',
   tools: {
+    underline: Underline,
     inlineCode: {
       class: InlineCode,
       shortcut: 'CMD+SHIFT+M',
