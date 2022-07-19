@@ -1,0 +1,17 @@
+<div class="articleEditor">
+
+  <div class="panelOne">
+    <h2>Editor JS</h2>
+    <div id="editorjs"></div>
+
+    <button (click)="saveEditorData()">Save Article</button>
+  </div>
+
+  <div class="panelTwo">
+    <h2>Clean Data</h2>
+    <div class="articleDataContainer">
+      <pre [innerHTML]="editorData"></pre>
+    </div>
+  </div>
+
+</div>

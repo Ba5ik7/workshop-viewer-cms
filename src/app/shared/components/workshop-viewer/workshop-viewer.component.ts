@@ -85,10 +85,11 @@ export class WorkshopViewerComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.destory))
     .subscribe((data) => {
       this.correctUrlPaths(data);
-      this.elementRef.nativeElement.innerHTML = data.html;
-      this.loadLiveExamples('workshop-live-example', LiveExampleComponent);
-      this.loadCodeHighlighter('code-highlighter', CodeHighlighterComponent);
-      this.loadNextPage();
+      
+      // this.elementRef.nativeElement.innerHTML = data.html;
+      // this.loadLiveExamples('workshop-live-example', LiveExampleComponent);
+      // this.loadCodeHighlighter('code-highlighter', CodeHighlighterComponent);
+      // this.loadNextPage();
     });
   }
 
