@@ -18,7 +18,7 @@
 <div class="page">
   <section class="workshop-viewer-container">
     <div class="mat-card">
-      <editorjs></editorjs>
+      <editorjs [dataHtml]="dataHtml" (saveEditorData)="saveEditorData($event)"></editorjs>
     </div>
   </section>
 </div>

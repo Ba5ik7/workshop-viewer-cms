@@ -130,4 +130,27 @@ export class WorkshopEditorService {
       error: (httpError: HttpErrorResponse) => this.sortPagesFormErrorSubject.next(httpError.status)
     });
   }
+
+
+  saveEditorDataSubject = new Subject<boolean>();
+  saveEditorData$ = this.saveEditorDataSubject.asObservable();
+
+  savePageHTMLErrorSubject = new Subject<number>();
+  savePageHTMLError$ = this.savePageHTMLErrorSubject.asObservable();
+
+  savePageHTMLSuccessSubject = new Subject<Category[]>();
+  savePageHTMLSuccess$ = this.savePageHTMLSuccessSubject.asObservable();
+
+  savePageHTML(page: any, currentDocument: string): void {
+    console.log({ 
+      currentDocument,
+      page
+    });
+    // this.httpClient
+    // .post<WorkshopDocument[]>('/api/navigation/page/sort-pages', page)
+    // .subscribe({
+    //   next: () => this.sortPagesFormSuccessSubject.next(pages),
+    //   error: (httpError: HttpErrorResponse) => this.sortPagesFormErrorSubject.next(httpError.status)
+    // });
+  }
 }

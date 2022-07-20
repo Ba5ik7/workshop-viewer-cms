@@ -42,6 +42,10 @@ export class PageListComponent implements OnInit, OnDestroy {
     this.destory.next(true);
   }
 
+  saveEditorData(): void {
+    this.workshopEditorService.saveEditorDataSubject.next(true);
+  }
+
   createPage(): void {
     this.matDialog.open(CreatePageModalComponent, { width: '400px' });
   }

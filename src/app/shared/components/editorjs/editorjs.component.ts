@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import EditorJS from '@editorjs/editorjs';
 import { debounceTime, Observable, skip, Subject, takeUntil } from 'rxjs';
+import { WorkshopEditorService } from 'src/app/pages/workshop-editor/workshop-editor.service';
 import { editorjsConfig } from './editorjs.config';
 
 @Component({
@@ -14,23 +15,41 @@ export class EditorjsComponent implements OnInit, OnDestroy {
 
   destory: Subject<boolean> = new Subject();
 
+  @Input() set dataHtml(dataHtml: string) {
+    if(dataHtml) this.renderData(dataHtml);
+  }
+
+  @Output('saveEditorData') saveEditorDataEmitter: EventEmitter<any> = new EventEmitter();
+
   editorData: any;
   editor!: EditorJS;
-  editorObserver!: MutationObserver;
+  // editorObserver!: MutationObserver;
 
-  constructor() { }
+  constructor(public workshopEditorService: WorkshopEditorService) {}
 
   ngOnInit(): void {
-    this.editor = new EditorJS(editorjsConfig) 
+    this.editor = new EditorJS(editorjsConfig);
+    this.workshopEditorService.saveEditorData$
+    .pipe(takeUntil(this.destory))
+    .subscribe(() => this.saveEditorData()); 
   }
 
   ngOnDestroy(): void {
+    this.editor.destroy();
     this.destory.next(true);
   }
 
   saveEditorData() : void {
-    this.editor.save().then((outputData) => {
-      this.editorData =  JSON.stringify(outputData, null, 2);
-    })
+    this.editor.save()
+    .then((outputData) => this.saveEditorDataEmitter.emit(outputData));
+  }
+
+  async renderData(dataHtml:string) {
+    console.log({
+      dataHtml
+    });
+    
+    await this.editor.isReady;
+    this.editor.render(JSON.parse(dataHtml));
   }
 }

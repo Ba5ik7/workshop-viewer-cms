@@ -13,6 +13,7 @@ import {
   ViewEncapsulation} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subject, takeUntil } from 'rxjs';
+import { WorkshopEditorService } from 'src/app/pages/workshop-editor/workshop-editor.service';
 import { WorkshopDocument } from '../../interfaces/workshop-document.interface';
 import { CodeHighlighterComponent } from '../code-highlighter/code-highlighter.component';
 import { LiveExampleComponent } from './live-example/live-example.component';
@@ -65,8 +66,9 @@ export class WorkshopViewerComponent implements OnInit, OnDestroy {
       // otherwise it is an embedded demo
       exampleViewerComponent.view = 'demo';
     }
+  }
 
-  }   
+  dataHtml!: string;
 
   constructor(
     private appRef: ApplicationRef,
@@ -74,18 +76,24 @@ export class WorkshopViewerComponent implements OnInit, OnDestroy {
     private viewContainerRef: ViewContainerRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     private workshopViewerService: WorkshopViewerService,
+    private workshopEditorService: WorkshopEditorService,
     private elementRef: ElementRef,
     private domSanitizer: DomSanitizer
     ) { }
 
   ngOnInit(): void { }
 
+  public saveEditorData(cleanData: any): void {
+    this.workshopEditorService.savePageHTML(cleanData, this.currentDocument);
+  }
+
+
   private fetchWorkshopDocuments():void {
     this.workshopViewerService.fetchWorkshop(`/api/workshop/workshops/${this.currentDocument}`)
     .pipe(takeUntil(this.destory))
     .subscribe((data) => {
       this.correctUrlPaths(data);
-      
+      this.dataHtml = data.html;
       // this.elementRef.nativeElement.innerHTML = data.html;
       // this.loadLiveExamples('workshop-live-example', LiveExampleComponent);
       // this.loadCodeHighlighter('code-highlighter', CodeHighlighterComponent);
