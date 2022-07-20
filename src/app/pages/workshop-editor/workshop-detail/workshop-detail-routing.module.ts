@@ -5,10 +5,12 @@ import { WorkshopDetailComponent } from './workshop-detail.component';
 const routes: Routes = [
   { 
     path: '',
+    data: { alwaysRefresh: true },
     component: WorkshopDetailComponent
   },
   { 
     path: ':workshopId',
+    data: { alwaysRefresh: true },
     component: WorkshopDetailComponent
   },
   { path: '**', redirectTo: '/404' }
