@@ -25,10 +25,9 @@ export class EditorjsComponent implements OnInit, OnDestroy {
   editor!: EditorJS;
   // editorObserver!: MutationObserver;
 
-  constructor(public workshopEditorService: WorkshopEditorService) {}
-
+  constructor(public workshopEditorService: WorkshopEditorService) { }
+  
   ngOnInit(): void {
-    this.editor = new EditorJS(editorjsConfig);
     this.workshopEditorService.saveEditorData$
     .pipe(takeUntil(this.destory))
     .subscribe(() => this.saveEditorData()); 
@@ -45,10 +44,7 @@ export class EditorjsComponent implements OnInit, OnDestroy {
   }
 
   async renderData(dataHtml:string) {
-    console.log({
-      dataHtml
-    });
-    
+    this.editor = new EditorJS(editorjsConfig);
     await this.editor.isReady;
     this.editor.render(JSON.parse(dataHtml));
   }
