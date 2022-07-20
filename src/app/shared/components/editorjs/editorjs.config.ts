@@ -4,6 +4,8 @@ import Embed from '@editorjs/embed';
 import Marker from '@editorjs/marker';
 import InlineCode from '@editorjs/inline-code';
 import Underline from '@editorjs/underline';
+import Hyperlink from 'editorjs-hyperlink';
+import Tooltip from 'editorjs-tooltip';
 import { EditorConfig } from '@editorjs/editorjs';
 
 export const editorjsConfig: EditorConfig = {
@@ -12,12 +14,24 @@ export const editorjsConfig: EditorConfig = {
   minHeight: 30,
   holder: 'editorjs',
   tools: {
+    tooltip: {
+      class: Tooltip,
+      config: {
+        location: 'top',
+        highlightColor: '#FFEFD5',
+        underline: true,
+        backgroundColor: '#154360',
+        textColor: '#FDFEFE',
+        holder: 'editorjs',
+      }
+    },
+    hyperLink: Hyperlink,
     underline: Underline,
     inlineCode: {
       class: InlineCode,
       shortcut: 'CMD+SHIFT+M',
     },
-    Embed : {
+    embed: {
       class : Embed,
       inlineToolbar: true,
       config: {
@@ -29,14 +43,14 @@ export const editorjsConfig: EditorConfig = {
         }
       }
     },
-    Marker :{
+    marker :{
       class : Marker,
       shortcut : 'CMD+SHIFT+M'
     },
     header: {
       class: Header,
       inlineToolbar: [
-        'link', 'bold', 'italic'
+        'hyperLink', 'bold', 'italic'
       ]
     },
     list: {
