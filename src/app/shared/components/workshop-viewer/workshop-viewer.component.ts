@@ -83,7 +83,7 @@ export class WorkshopViewerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void { }
 
-  public saveEditorData(cleanData: any): void {
+  public saveEditorData(cleanData: string): void {
     this.workshopEditorService.savePageHTML(cleanData, this.currentDocument);
   }
 

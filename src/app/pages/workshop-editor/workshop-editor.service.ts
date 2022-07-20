@@ -138,19 +138,15 @@ export class WorkshopEditorService {
   savePageHTMLErrorSubject = new Subject<number>();
   savePageHTMLError$ = this.savePageHTMLErrorSubject.asObservable();
 
-  savePageHTMLSuccessSubject = new Subject<Category[]>();
+  savePageHTMLSuccessSubject = new Subject<WorkshopDocument>();
   savePageHTMLSuccess$ = this.savePageHTMLSuccessSubject.asObservable();
 
-  savePageHTML(page: any, currentDocument: string): void {
-    console.log({ 
-      currentDocument,
-      page
+  savePageHTML(html: string, _id: string): void {
+    this.httpClient
+    .post<WorkshopDocument>('/api/workshop/update-workshop-html', { _id, html })
+    .subscribe({
+      next: (page) => this.savePageHTMLSuccessSubject.next(page),
+      error: (httpError: HttpErrorResponse) => this.savePageHTMLErrorSubject.next(httpError.status)
     });
-    // this.httpClient
-    // .post<WorkshopDocument[]>('/api/navigation/page/sort-pages', page)
-    // .subscribe({
-    //   next: () => this.sortPagesFormSuccessSubject.next(pages),
-    //   error: (httpError: HttpErrorResponse) => this.sortPagesFormErrorSubject.next(httpError.status)
-    // });
   }
 }

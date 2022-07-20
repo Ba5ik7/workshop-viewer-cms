@@ -19,7 +19,7 @@ export class EditorjsComponent implements OnInit, OnDestroy {
     if(dataHtml) this.renderData(dataHtml);
   }
 
-  @Output('saveEditorData') saveEditorDataEmitter: EventEmitter<any> = new EventEmitter();
+  @Output('saveEditorData') saveEditorDataEmitter: EventEmitter<string> = new EventEmitter();
 
   editorData: any;
   editor!: EditorJS;
@@ -40,7 +40,7 @@ export class EditorjsComponent implements OnInit, OnDestroy {
 
   saveEditorData() : void {
     this.editor.save()
-    .then((outputData) => this.saveEditorDataEmitter.emit(outputData));
+    .then((outputData) => this.saveEditorDataEmitter.emit(JSON.stringify(outputData)));
   }
 
   async renderData(dataHtml:string) {
