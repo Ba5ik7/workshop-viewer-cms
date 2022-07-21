@@ -89,7 +89,7 @@ export class WorkshopViewerComponent implements OnInit, OnDestroy {
 
 
   private fetchWorkshopDocuments():void {
-    this.workshopViewerService.fetchWorkshop(`/api/workshop/workshops/${this.currentDocument}`)
+    this.workshopViewerService.fetchWorkshop(`/api/workshop/${this.currentDocument}`)
     .pipe(takeUntil(this.destory))
     .subscribe((data) => {
       this.correctUrlPaths(data);
