@@ -1,5 +1,5 @@
-// import Header from './plugins/header/index';
-import Header from '@editorjs/header';
+import Header from './plugins/header';
+// import Header from '@editorjs/header';
 import List from '@editorjs/list';
 import Embed from '@editorjs/embed';
 import Marker from '@editorjs/marker';
@@ -7,7 +7,7 @@ import InlineCode from '@editorjs/inline-code';
 import Underline from '@editorjs/underline';
 import Hyperlink from 'editorjs-hyperlink';
 import Tooltip from 'editorjs-tooltip';
-import { EditorConfig } from '@editorjs/editorjs';
+import { EditorConfig, ToolConstructable } from '@editorjs/editorjs';
 
 export const editorjsConfig: EditorConfig = {
   autofocus: true,

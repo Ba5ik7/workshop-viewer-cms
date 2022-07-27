@@ -1,8 +1,20 @@
 // @ts-nocheck comment
+import {
+  BlockTool,
+  BaseTool,
+  BlockToolConstructable,
+  API,
+  ToolConfig,
+  BlockToolData,
+  PasteConfig,
+  PasteEvent,
+  PatternPasteEventDetail
+} from '@editorjs/editorjs'
+// import EditorJS, { API, ToolSettings, BaseTool } from '@editorjs/editorjs';
 /**
  * Build styles
  */
- require('./index.css').toString();
+//  require('./index.css').toString();
 
  /**
   * @typedef {object} HeaderData
@@ -27,7 +39,7 @@
   * @license MIT
   * @version 2.0.0
   */
- class Header {
+export default class Header implements BlockToolConstructable {
    /**
     * Render plugin`s main Element and fill it with saved data
     *
@@ -37,9 +49,9 @@
     *   api - Editor.js API
     *   readOnly - read only mode flag
     */
-   constructor({ data, config, api, readOnly }) {
+   constructor({ data, config, api }: { api: API, config?: ToolConfig, data?: HeaderData }) {
      this.api = api;
-     this.readOnly = readOnly;
+     this.readOnly = false;
  
      /**
       * Styles
@@ -352,7 +364,9 @@
       * For Deep Linking
       */
      tag.id = spinalCase(this._data.text);
- 
+     tag.setAttribute('id', spinalCase(this._data.text));
+    console.log(tag);
+    
      /**
       * Make tag editable
       */
@@ -531,13 +545,13 @@
     */
    static get toolbox() {
      return {
-       icon: require('./../assets/icon.svg').default,
+       icon: `<svg xmlns="http://www.w3.org/2000/svg" width="10" height="14" viewBox="0 0 10 14"><path d="M7.6 8.15H2.25v4.525a1.125 1.125 0 0 1-2.25 0V1.125a1.125 1.125 0 1 1 2.25 0V5.9H7.6V1.125a1.125 1.125 0 0 1 2.25 0v11.55a1.125 1.125 0 0 1-2.25 0V8.15z"/></svg>`,
        title: 'Heading',
      };
    }
  }
  
- module.exports = Header;
+//  module.exports = Header;
 
  function spinalCase(str) {
   return str.replace(/^[\W_]+|[\W_]+$|([\W_]+)/g, function ($0, $1) {
