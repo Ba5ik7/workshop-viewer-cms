@@ -1,3 +1,4 @@
+// import Header from './plugins/header/index';
 import Header from '@editorjs/header';
 import List from '@editorjs/list';
 import Embed from '@editorjs/embed';
