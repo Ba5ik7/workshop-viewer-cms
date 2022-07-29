@@ -284,7 +284,7 @@ export default class Header implements BlockToolConstructable {
    get data() {
      this._data.text = this._element.innerHTML;
      this._data.level = this.currentLevel.number;
- 
+     this._data.id = this._element.id; 
      return this._data;
    }
  
@@ -297,6 +297,10 @@ export default class Header implements BlockToolConstructable {
     * @private
     */
    set data(data) {
+    console.log({
+      data
+    });
+    
      this._data = this.normalizeData(data);
  
      /**
@@ -364,8 +368,6 @@ export default class Header implements BlockToolConstructable {
       * For Deep Linking
       */
      tag.id = spinalCase(this._data.text);
-     tag.setAttribute('id', spinalCase(this._data.text));
-    console.log(tag);
     
      /**
       * Make tag editable
