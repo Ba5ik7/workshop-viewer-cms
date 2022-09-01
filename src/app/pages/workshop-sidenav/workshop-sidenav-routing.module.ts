@@ -20,6 +20,9 @@ const routes: Routes = [
         loadChildren: () => import('../settings/settings.module').then(m => m.SettingsModule)
       },
       {
+        path: 'chat', loadChildren: () => import('../chat/chat.module').then(m => m.ChatModule)
+      },
+      {
         path: 'workshop-editor',
         loadChildren: () => import('../workshop-editor/workshop-editor.module').then(m => m.WorkshopEditorModule)
       }
