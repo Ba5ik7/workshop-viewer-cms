@@ -23,6 +23,13 @@ const usersSection: Section = {
   sectionTitle: 'Users',
 }
 
+const sectionSelectedHeaderMap: Map<string, { headerSvgPath: string, sectionTitle: string }> = new Map([
+  ['dashboard', { headerSvgPath: '/assets/img/dashboard-color.png', sectionTitle: 'Dashboard' }],
+  ['users', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Users' }],
+  ['chat', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Chat' }],
+  ['settings', { headerSvgPath: '/assets/img/users-color.png', sectionTitle: 'Settings' }]
+]);
+
 @Injectable({
   providedIn: 'root'
 })
@@ -100,18 +107,18 @@ export class NavigationService {
   }
     
   private async setSectionProperties(section: string): Promise<void> {
-    if(section !== 'dashboard' && section !== 'users') {
+    const staticSection = sectionSelectedHeaderMap.get(section);
+    if(staticSection) {
+      this.sectionTitleSub.next(staticSection?.sectionTitle);
+      this.headerSvgPathSub.next(staticSection?.headerSvgPath);
+      this.categoryTitleSub.next('Overview');
+    } else {
       await this.getCategories(section);
       this.sectionRoute = section;
       this.sectionSub.next(this.sections[section]);  
       this.sectionTitleSub.next(this.sections[section].sectionTitle);
       this.headerSvgPathSub.next(this.sections[section].headerSvgPath);
       this.sectionNavListSub.next(this.categories);
-    } else {
-      const staticSection = section !== 'dashboard' ? usersSection : dashboardSection; 
-      this.sectionTitleSub.next(staticSection.sectionTitle);
-      this.headerSvgPathSub.next(staticSection.headerSvgPath);
-      this.categoryTitleSub.next('Overview');
     }
   }
   

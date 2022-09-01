@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationService } from 'src/app/shared/services/navigation/navigation.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(navigationService: NavigationService) {
+    navigationService.sectionRouteSub.next('settings');
+  }
   ngOnInit(): void {
   }
 
