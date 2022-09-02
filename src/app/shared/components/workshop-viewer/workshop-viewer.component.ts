@@ -9,8 +9,8 @@ import {
   OnDestroy,
   OnInit,
   SecurityContext,
-  ViewContainerRef, 
-  ViewEncapsulation} from '@angular/core';
+  ViewContainerRef
+} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subject, takeUntil } from 'rxjs';
 import { WorkshopEditorService } from 'src/app/pages/workshop-editor/workshop-editor.service';
