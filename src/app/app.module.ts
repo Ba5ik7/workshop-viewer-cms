@@ -11,6 +11,15 @@ import { HighlightOptions, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarModule } from './shared/components/navbar/navbar.module';
+import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from '@angular/material/core';
+
+const globalRippleConfig: RippleGlobalOptions = {
+  disabled: true,
+  animation: {
+    enterDuration: 0,
+    exitDuration: 0
+  }
+};
 
 @NgModule({
   declarations: [
@@ -25,6 +34,7 @@ import { NavbarModule } from './shared/components/navbar/navbar.module';
     NavbarModule
   ],
   providers: [
+    { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     {
       provide: HIGHLIGHT_OPTIONS,
