@@ -21,6 +21,8 @@ import { CreatePageModalComponent } from './page-list/create-page-modal/create-p
 import { DeletePageModalComponent } from './page-list/delete-page-modal/delete-page-modal.component';
 import { EditPageModalComponent } from './page-list/edit-page-modal/edit-page-modal.component';
 
+import { NgxEditorjsModule } from 'ngx-editorjs';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { EditPageModalComponent } from './page-list/edit-page-modal/edit-page-mo
     MatInputModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    WorkshopEditorRoutingModule
+    WorkshopEditorRoutingModule,
+    NgxEditorjsModule
   ]
 })
 export class WorkshopEditorModule { }
