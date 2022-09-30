@@ -20,6 +20,8 @@
     "@angular/platform-browser": "~14.2.0",
     "@angular/platform-browser-dynamic": "~14.2.0",
     "@angular/router": "~14.2.0",
+    "@tmdjr/ngx-editorjs": "^0.0.3",
+    "@tmdjr/ngx-editorjs-paragraph-block": "^0.0.3",
     "@tmdjr/workshop-examples": "^0.0.1",
     "ngx-highlightjs": "^7.0.0",
     "rxjs": "~7.5.6",
@@ -40,8 +42,8 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "ng-packagr": "^14.2.0",
-    "source-map-explorer": "^2.5.2",
     "schematics-scss-migrate": "^1.3.15",
+    "source-map-explorer": "^2.5.2",
     "typescript": "4.7.4"
   }
 }
