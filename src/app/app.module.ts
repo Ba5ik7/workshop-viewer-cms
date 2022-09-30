@@ -12,6 +12,7 @@ import { HighlightOptions, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarModule } from './shared/components/navbar/navbar.module';
 import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from '@angular/material/core';
+import { NGX_EDITORJS_OPTIONS } from '@tmdjr/ngx-editorjs';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: true,
@@ -46,6 +47,18 @@ const globalRippleConfig: RippleGlobalOptions = {
           html: () => import('highlight.js/lib/languages/xml')
         },
         themePath: 'assets/css/highlightjs-themes/gradient-dark.css'
+      }
+    },
+    {
+      provide: NGX_EDITORJS_OPTIONS,
+      useValue: {
+        blocks: [
+          {
+            componentName: 'NgxEditorParagraphBlockMediator',
+            esm2020Path: 'lib/ngx-editor-paragraph-block.mediator',
+            name: 'Paragraph'
+          }
+        ]
       }
     }
   ],

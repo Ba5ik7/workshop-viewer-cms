@@ -2,7 +2,7 @@
 @use './app-theme';
 @use './styles/general';
 
-@use 'ngx-editorjs' as editorjs;
+// @use '@tmdjr/ngx-editorjs' as editorjs;
 
 // Define the light theme.
 $_primary: mat.define-palette(mat.$indigo-palette);
@@ -14,7 +14,7 @@ $_theme: mat.define-light-theme($_primary, $_accent);
 
 @include mat.all-component-themes($_theme);
 @include app-theme.theme($_theme);
-@include editorjs.ngx-editorjs-theme($_theme);
+// @include editorjs.ngx-editorjs-theme($_theme);
 
 // It's only been a week since IE has die and now this on Edge
 input:-webkit-autofill,
