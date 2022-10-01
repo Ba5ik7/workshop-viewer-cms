@@ -1,6 +1,9 @@
 @use '@angular/material' as mat;
 @use 'sass:color';
 @use 'sass:map';
+
+@use '@tmdjr/ngx-editorjs' as ngx-editorjs;
+
 @use './app/pages/not-found/not-found-theme';
 // @use './app/pages/home/home-theme';
 @use './app/pages/workshop-sidenav/workshop-sidenav';
@@ -53,6 +56,8 @@
   .warn {
     color: mat.get-color-from-palette($warn);
   }
+  
+  @include ngx-editorjs.theme($theme);
 
   // @include home-theme.theme($theme);
   @include not-found-theme.theme($theme);
