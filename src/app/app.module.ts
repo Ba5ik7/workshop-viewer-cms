@@ -13,6 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarModule } from './shared/components/navbar/navbar.module';
 import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from '@angular/material/core';
 import { NGX_EDITORJS_OPTIONS } from '@tmdjr/ngx-editorjs';
+import { NgxEditorjsParagraphBlockMediator } from '@tmdjr/ngx-editorjs-paragraph-block';
+import { NgxEditorjsBlockquotesBlockMediator } from '@tmdjr/ngx-editorjs-blockquotes-block';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: true,
@@ -54,9 +56,12 @@ const globalRippleConfig: RippleGlobalOptions = {
       useValue: {
         blocks: [
           {
-            componentName: 'NgxEditorParagraphBlockMediator',
-            esm2020Path: 'lib/ngx-editorjs-paragraph-block.mediator',
-            name: 'Paragraph'
+            name: 'Paragraph',
+            component: NgxEditorjsParagraphBlockMediator
+          },
+          {
+            name: 'Blockquotes',
+            component: NgxEditorjsBlockquotesBlockMediator
           }
         ]
       }
