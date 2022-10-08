@@ -83,11 +83,6 @@ export class WorkshopViewerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void { }
 
-  public saveEditorData(cleanData: string): void {
-    this.workshopEditorService.savePageHTML(cleanData, this.currentDocument);
-  }
-
-
   private fetchWorkshopDocuments():void {
     this.workshopViewerService.fetchWorkshop(`/api/workshop/${this.currentDocument}`)
     .pipe(takeUntil(this.destory))
@@ -161,5 +156,11 @@ export class WorkshopViewerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.destory.next(true);
+  }
+
+
+  requestValue = this.workshopEditorService.saveEditorDataSubject;
+  valueRequested(value: any): void {
+    console.log({ value });
   }
 }

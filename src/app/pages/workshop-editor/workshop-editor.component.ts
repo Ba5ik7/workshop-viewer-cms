@@ -10,8 +10,6 @@ import { NavigationService } from 'src/app/shared/services/navigation/navigation
   styleUrls: ['./workshop-editor.component.scss']
 })
 export class WorkshopEditorComponent implements OnInit, OnDestroy {
-
-  
   destory: Subject<boolean> = new Subject();
 
   categories!: Observable<Category[]>;
