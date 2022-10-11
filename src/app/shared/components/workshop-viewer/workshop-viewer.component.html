@@ -10,6 +10,7 @@
   <section class="workshop-viewer-container">
     <div class="mat-card">
       <ngx-editorjs
+        [inputData]="blocks"
         [requestValue]="requestValue"
         (valueRequested)="valueRequested($event)"
       ></ngx-editorjs>

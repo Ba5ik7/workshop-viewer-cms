@@ -57,11 +57,13 @@ const globalRippleConfig: RippleGlobalOptions = {
         blocks: [
           {
             name: 'Paragraph',
-            component: NgxEditorjsParagraphBlockMediator
+            component: NgxEditorjsParagraphBlockMediator,
+            componentInstanceName: 'NgxEditorjsParagraphBlockMediator'
           },
           {
             name: 'Blockquotes',
-            component: NgxEditorjsBlockquotesBlockMediator
+            component: NgxEditorjsBlockquotesBlockMediator,
+            componentInstanceName: 'NgxEditorjsBlockquotesBlockMediator'
           }
         ]
       }
