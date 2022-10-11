@@ -17,7 +17,7 @@ export class WorkshopViewerService {
       return this.cache[url];
     }
 
-    const stream = this.http.get<WorkshopDocument>(url).pipe(shareReplay(1));
+    const stream = this.http.get<WorkshopDocument>(url).pipe();
     return stream.pipe(tap(() => this.cache[url] = stream));
   }
 }
