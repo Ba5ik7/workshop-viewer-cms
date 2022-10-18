@@ -25,6 +25,8 @@ export class LoginService {
   }
 
   test() {
-    this.httpClient.get('/api/auth/local/hello').subscribe();
+    this.httpClient.get('/api/auth/local/hello').subscribe((data) => { 
+      console.log(data);
+    });
   }
 }
