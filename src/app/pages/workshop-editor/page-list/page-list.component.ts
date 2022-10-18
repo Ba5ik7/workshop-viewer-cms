@@ -85,5 +85,17 @@ export class PageListComponent implements OnInit, OnDestroy {
       this.snackBar.open('😸 Categories new order updated', undefined, this.snackBarOptiions);
       this.cdkDragDisabled = false;      
     });
+
+    this.workshopEditorService.savePageHTMLError$
+    .pipe(takeUntil(this.destory))
+    .subscribe((error) => {
+      this.snackBar.open('😿 Error saving workshop', undefined, this.snackBarOptiions);
+    });
+
+    this.workshopEditorService.savePageHTMLSuccess$
+    .pipe(takeUntil(this.destory))
+    .subscribe((page) => {
+      this.snackBar.open('😸 Workshop was saved', undefined, this.snackBarOptiions);
+    });
   }
 }
