@@ -23,4 +23,8 @@ export class LoginService {
       error: (httpError: HttpErrorResponse) => this.signInFormErrorSubject.next(httpError.status)
     });
   }
+
+  test() {
+    this.httpClient.get('/api/auth/local/hello').subscribe();
+  }
 }

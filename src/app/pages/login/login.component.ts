@@ -93,7 +93,7 @@ export class LoginComponent implements OnInit {
   }
 
   test() {
-    // this.loginService.test();
+    this.loginService.test();
   }
 
 }
