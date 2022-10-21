@@ -1,12 +1,13 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { IUser } from '../shared/interfaces/user.interface';
+import { debounceTime, Observable, Subject } from 'rxjs';
+import { IUser } from '../../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class AuthService {
+
 
   constructor(private httpClient: HttpClient) { }
 
@@ -24,9 +25,7 @@ export class LoginService {
     });
   }
 
-  test() {
-    this.httpClient.get('/api/auth/local/hello').subscribe((data) => { 
-      console.log(data);
-    });
+  isLoggedIn(): Observable<boolean> {
+    return this.httpClient.get<boolean>('/api/auth/is-logged-in');
   }
 }

@@ -1,9 +1,10 @@
 import { HttpStatusCode } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { UserStateService } from 'src/app/shared/services/user-state/user-state.service';
-import { LoginService } from '../login.service';
+import { AuthService } from '../../shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -37,9 +38,10 @@ export class LoginComponent implements OnInit {
   };
 
   constructor(
-    private loginService: LoginService,
+    private authService: AuthService,
     private userStateService: UserStateService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -48,7 +50,7 @@ export class LoginComponent implements OnInit {
 
   signInClick(): void {
     this.requestInProgress(true);
-    this.loginService.signIn(this.signInForm.value);    
+    this.authService.signIn(this.signInForm.value);    
   }
 
   initSignForm(): void {
@@ -56,7 +58,7 @@ export class LoginComponent implements OnInit {
     .pipe(takeUntil(this.destory))
     .subscribe(() => this.setErrorsMessages(this.signInForm, this.signInFormErrorMessages));
   
-    this.loginService.signInFormError$
+    this.authService.signInFormError$
     .pipe(takeUntil(this.destory))
     .subscribe((error) => {      
       this.requestInProgress();
@@ -68,7 +70,7 @@ export class LoginComponent implements OnInit {
       }
     });
     
-    this.loginService.signInFormSuccess$
+    this.authService.signInFormSuccess$
     .pipe(takeUntil(this.destory))
     .subscribe((user) => this.signSuccuessful(user));
   }
@@ -89,11 +91,7 @@ export class LoginComponent implements OnInit {
 
   signSuccuessful(whatever: any): void {
     this.requestInProgress();
-    this.userStateService.setUser(whatever);
+    this.userStateService.setUserToken(whatever);
+    this.router.navigate(['auth', 'dashboard']);
   }
-
-  test() {
-    this.loginService.test();
-  }
-
 }

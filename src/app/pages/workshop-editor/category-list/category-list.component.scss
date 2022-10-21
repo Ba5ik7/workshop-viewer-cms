@@ -27,4 +27,22 @@
     padding: 10px 10px;
     text-align: right;
   }
+
+  .category-item {
+    .edit-icon, .delete-icon {
+      margin: 0 0 0 10px;
+      opacity: 0;
+    }
+    &:hover {
+      .edit-icon, .delete-icon {
+        opacity: 0.45;
+      }
+    }
+  }
+
+  .edit-icon, .delete-icon {
+    &:hover {
+      opacity: 1!important;
+    }
+  }
 }

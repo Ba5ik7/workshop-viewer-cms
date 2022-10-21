@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ActivatedRouteSnapshot, DetachedRouteHandle, RouteReuseStrategy, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 export class WorkshopReuseStrategy extends RouteReuseStrategy {
   retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle | null { return null; }
@@ -16,13 +17,15 @@ export class WorkshopReuseStrategy extends RouteReuseStrategy {
 }
 
 const routes: Routes = [
+  { path: '',   redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
   },
   {
-    path: '',
-    loadChildren: () => import('./pages/workshop-sidenav/workshop-sidenav.module').then(m => m.WorkshopSidenavModule)
+    path: 'auth',
+    loadChildren: () => import('./pages/workshop-sidenav/workshop-sidenav.module').then(m => m.WorkshopSidenavModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '404',
@@ -34,6 +37,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: WorkshopReuseStrategy}]
+  providers: [{ provide: RouteReuseStrategy, useClass: WorkshopReuseStrategy }]
 })
 export class AppRoutingModule { }

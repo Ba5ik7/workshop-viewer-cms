@@ -25,7 +25,8 @@
       <mat-divider></mat-divider>
       <a mat-list-item *ngFor="let section of sections | keyvalue"
           [routerLink]="'workshop-editor/' + section.value._id"
-          routerLinkActive="workshop-menu-nav-item-selected">
+          routerLinkActive="workshop-menu-nav-item-selected"
+          class="section-item">
         <!-- <img [src]="'/admin' + section.value.menuSvgPath"> -->
         {{section.value.sectionTitle}}
         <div class="flex-spacer"></div>

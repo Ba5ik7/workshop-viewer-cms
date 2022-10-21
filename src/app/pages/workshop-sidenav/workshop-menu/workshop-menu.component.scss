@@ -40,6 +40,24 @@
       opacity: 1;
     }
   }
+
+  .section-item {
+    .delete-icon {
+      margin: 0 0 0 10px;
+      opacity: 0;
+    }
+    &:hover {
+      .delete-icon {
+        opacity: 0.45;
+      }
+    }
+  }
+
+  .delete-icon {
+    &:hover {
+      opacity: 1!important;
+    }
+  }
 }
 
 
