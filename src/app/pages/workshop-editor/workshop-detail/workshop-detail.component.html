@@ -1,3 +1,13 @@
+<mat-paginator
+  #paginator
+  class="paginator"
+  [length]="length"
+  [showFirstLastButtons]="true"
+  [hidePageSize]="true"
+  [pageSize]="pageSize"
+  (page)="pageEventChange($event)"
+  aria-label="Select page">
+</mat-paginator>
 <div class="workshop-detail-content">
   <workshop-viewer-terrence-dusell [workshopDocument]="workshopDocument"></workshop-viewer-terrence-dusell>
 </div>

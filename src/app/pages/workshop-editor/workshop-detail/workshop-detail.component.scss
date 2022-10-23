@@ -14,6 +14,12 @@ workshop-detail {
     padding-left: 15px;
     padding-right: 15px;
   }
+
+  .paginator {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
 }
 
 // .workshop-detail-content {
