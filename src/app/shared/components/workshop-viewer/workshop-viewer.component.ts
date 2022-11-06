@@ -30,39 +30,6 @@ import { WorkshopViewerService } from './workshop-viewer.service';
 })
 export class WorkshopViewerComponent implements OnInit, OnDestroy {
 
-  // inputData: NgxEditorjsOutputBlock[] = [
-  //       {
-  //           "blockId": "omjeg3pqs9b",
-  //           "sortIndex": 0,
-  //           "name": "NgxEditorjsHeaderBlockMediator",
-  //           "dataClean": "Property binding best practices"
-  //       },
-  //       {
-  //           "blockId": "0kkhc0mkafil",
-  //           "sortIndex": 1,
-  //           "name": "NgxEditorjsParagraphBlockMediator",
-  //           "dataClean": "By following a few guidelines, you can use property binding in a way that helps you minimize bugs and keep your code readable."
-  //       },
-  //       {
-  //           "blockId": "ytux2n7f9u",
-  //           "sortIndex": 2,
-  //           "name": "NgxEditorjsBlockquotesBlockMediator",
-  //           "dataClean": "See the live example / download example for a working example containing the code snippets in this guide."
-  //       },
-  //       {
-  //           "blockId": "saynp14rtp",
-  //           "sortIndex": 3,
-  //           "name": "NgxEditorjsHeaderBlockMediator",
-  //           "dataClean": "Avoid side effects"
-  //       },
-  //       {
-  //           "blockId": "j80pzv898",
-  //           "sortIndex": 4,
-  //           "name": "NgxEditorjsParagraphBlockMediator",
-  //           "dataClean": "Evaluation of a template expression should have no visible side effects. Use the syntax for template expressions to help avoid side effects. In general, the correct syntax prevents you from assigning a value to anything in a property binding expression. The syntax also prevents you from using increment and decrement operators."
-  //       }
-  //   ];
-
   currentDocument!: string
 
   pageNotFound:boolean =  false;
@@ -74,7 +41,7 @@ export class WorkshopViewerComponent implements OnInit, OnDestroy {
       this.pageNotFound = true;
       return;
     }
-    this.currentDocument = currentDocument
+    this.currentDocument = currentDocument;
     this.fetchWorkshopDocuments();
   }
   

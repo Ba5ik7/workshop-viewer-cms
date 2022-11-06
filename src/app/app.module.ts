@@ -16,6 +16,7 @@ import { NGX_EDITORJS_OPTIONS } from '@tmdjr/ngx-editorjs';
 import { NgxEditorjsParagraphBlockMediator } from '@tmdjr/ngx-editorjs-paragraph-block';
 import { NgxEditorjsBlockquotesBlockMediator } from '@tmdjr/ngx-editorjs-blockquotes-block';
 import { NgxEditorjsImageBlockMediator } from '@tmdjr/ngx-editorjs-image-block';
+import { NgxEditorjsCodeBlockMediator } from '@tmdjr/ngx-editorjs-code-block';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: true,
@@ -70,6 +71,11 @@ const globalRippleConfig: RippleGlobalOptions = {
             name: 'Image',
             component: NgxEditorjsImageBlockMediator,
             componentInstanceName: 'NgxEditorjsImageBlockMediator'
+          },
+          {
+            name: 'Code',
+            component: NgxEditorjsCodeBlockMediator,
+            componentInstanceName: 'NgxEditorjsCodeBlockMediator'
           }
         ]
       }
