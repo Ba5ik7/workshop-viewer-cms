@@ -16,6 +16,10 @@ $_theme: mat.define-light-theme($_primary, $_accent);
 @include app-theme.theme($_theme);
 // @include editorjs.ngx-editorjs-theme($_theme);
 
+[contenteditable] {
+  outline: 0px solid transparent;
+}
+
 // It's only been a week since IE has die and now this on Edge
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
