@@ -1,10 +1,11 @@
 <mat-paginator
+  *ngIf="hasMoreThanOneDocument"
   #paginator
   class="paginator"
   [length]="workshopDocumentsLength"
   [showFirstLastButtons]="true"
   [hidePageSize]="true"
-  [pageSize]="pageSize"
+  [pageSize]="1"
   (page)="pageEventChange($event)"
   aria-label="Select page">
 </mat-paginator>
