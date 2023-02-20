@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationService } from 'src/app/shared/services/navigation/navigation.service';
+import { ChatService } from './chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -8,7 +9,7 @@ import { NavigationService } from 'src/app/shared/services/navigation/navigation
 })
 export class ChatComponent implements OnInit {
 
-  constructor(navigationService: NavigationService) {
+  constructor(navigationService: NavigationService, private chatService: ChatService) {
     navigationService.sectionRouteSub.next('chat');
   }
 

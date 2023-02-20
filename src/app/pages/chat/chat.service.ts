@@ -24,10 +24,12 @@ export interface ChatAppData {
 })
 export class ChatService {
 
-  private url = 'http://localhost:3000/chat';
   private client!: Socket;
 
   constructor() { 
-    this.client = io(this.url, { autoConnect: false });
+    this.client = io('', { autoConnect: true, path: '/api/chat' });
+    this.client.on('connect', () => {
+      console.warn('Connected to server');
+    });
   }
 }
