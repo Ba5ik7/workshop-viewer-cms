@@ -27,9 +27,14 @@ export class ChatService {
   private client!: Socket;
 
   constructor() { 
-    this.client = io('', { autoConnect: true, path: '/api/chat' });
+    this.client = io('', { autoConnect: false, path: '/api/chat' });
     this.client.on('connect', () => {
       console.warn('Connected to server');
     });
+  }
+
+  connect(user: string) {
+    if (this.client.connected) return
+    this.client.connect();
   }
 }

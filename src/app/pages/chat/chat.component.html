@@ -1,1 +1,13 @@
 <h1>Chat Rooms</h1>
+<div>
+  <label
+    >Name
+    <input
+      type="text"
+      name="name"
+      [(ngModel)]="user"
+      (keyup.enter)="connect()"
+    />
+  </label>
+  <button type="button" (click)="connect()">Connect</button>
+</div>

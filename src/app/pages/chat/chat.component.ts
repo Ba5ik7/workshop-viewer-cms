@@ -9,6 +9,8 @@ import { ChatService } from './chat.service';
 })
 export class ChatComponent implements OnInit {
 
+  user = '';
+
   constructor(navigationService: NavigationService, private chatService: ChatService) {
     navigationService.sectionRouteSub.next('chat');
   }
@@ -16,4 +18,9 @@ export class ChatComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  connect() {
+    if (this.user) {
+      this.chatService.connect(this.user);
+    }
+  }
 }
