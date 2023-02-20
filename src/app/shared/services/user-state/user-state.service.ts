@@ -13,8 +13,12 @@ export class UserStateService {
     this.localStoarge.setLocalstorageItem({ key: 'user', value: JSON.stringify(user) });
   }
 
-  getUserToken(): IUser {
-    const user = this.localStoarge.getLocalstorageItem('user');
-    return JSON.parse(user.value);
+  getUserToken(): IUser | null {
+    const user = this.localStoarge.getLocalstorageItem('user')?.value;
+    try {
+      return JSON.parse(user);
+    } catch (error) {
+      return null;
+    }
   }
 }

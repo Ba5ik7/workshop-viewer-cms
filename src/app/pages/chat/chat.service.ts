@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { io, Socket } from 'socket.io-client';
 
 export interface Message {
   user: string;
@@ -24,5 +24,10 @@ export interface ChatAppData {
 })
 export class ChatService {
 
-  constructor() { }
+  private url = 'http://localhost:3000/chat';
+  private client!: Socket;
+
+  constructor() { 
+    this.client = io(this.url, { autoConnect: false });
+  }
 }

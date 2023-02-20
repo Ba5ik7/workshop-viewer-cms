@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, shareReplay, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { WorkshopDocument } from '../../interfaces/workshop-document.interface';
 
 
