@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 
 export interface Message {
@@ -25,12 +26,18 @@ export interface ChatAppData {
 export class ChatService {
 
   private client!: Socket;
+  private connected$ = new BehaviorSubject(false);
+  private user$ = new BehaviorSubject('');
+  private rooms$ = new BehaviorSubject<string[]>([]);
+  private activeRoom$ = new BehaviorSubject('General');
+  private chatRoom$ = new BehaviorSubject<ChatRoom>({
+    users: [],
+    messages: [],
+  });
 
   constructor() { 
     this.client = io('', { autoConnect: false, path: '/api/chat' });
-    this.client.on('connect', () => {
-      console.warn('Connected to server');
-    });
+    this.client.on('connect', () => console.warn('Connected to server'));
   }
 
   connect(user: string) {
