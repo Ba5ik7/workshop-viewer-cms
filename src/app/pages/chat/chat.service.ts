@@ -27,7 +27,7 @@ export class ChatService {
 
   private client!: Socket;
   private connected$ = new BehaviorSubject(false);
-  private user$ = new BehaviorSubject('');
+  private user$ = new BehaviorSubject('Admin');
   private rooms$ = new BehaviorSubject<string[]>([]);
   private activeRoom$ = new BehaviorSubject('General');
   private chatRoom$ = new BehaviorSubject<ChatRoom>({
@@ -36,12 +36,20 @@ export class ChatService {
   });
 
   constructor() { 
-    this.client = io('', { autoConnect: false, path: '/api/chat' });
-    this.client.on('connect', () => console.warn('Connected to server'));
+    this.client = io('', { autoConnect: true, path: '/api/chat' });
+    this.client.on('connect', () => this.connected());
   }
 
   connect(user: string) {
     if (this.client.connected) return
     this.client.connect();
+  }
+
+  // I know it's a void return function :()
+  private connected(): void {
+    this.client.emit('identify', this.user$.value, (rooms: string[]) => {
+      this.rooms$.next(rooms);
+    });
+    this.connected$.next(true);
   }
 }
