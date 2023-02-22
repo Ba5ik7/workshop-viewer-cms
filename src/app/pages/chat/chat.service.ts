@@ -36,18 +36,26 @@ export class ChatService {
   });
 
   constructor() { 
-    this.client = io('', { autoConnect: true, path: '/api/chat' });
-    this.client.on('connect', () => this.connected());
+    this.client = io('/chat', { autoConnect: true, path: '/api/socket.io' });
+    this.client.on('connect', () => {
+      console.log('connected');
+      
+      this.connected()
+    });
   }
 
   connect(user: string) {
     if (this.client.connected) return
-    this.client.connect();
+    // this.client.connect();
   }
 
   // I know it's a void return function :()
   private connected(): void {
+    console.log('identify', this.user$.value);
+    
     this.client.emit('identify', this.user$.value, (rooms: string[]) => {
+      console.log('rooms', rooms);
+      
       this.rooms$.next(rooms);
     });
     this.connected$.next(true);
