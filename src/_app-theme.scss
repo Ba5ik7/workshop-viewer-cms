@@ -10,6 +10,7 @@
 // @use './app/pages/home/home-theme';
 @use './app/pages/workshop-sidenav/workshop-sidenav';
 @use './app/pages/workshop-editor/workshop-editor';
+@use './app/pages/chat/chat';
 
 @use './app/shared/components/footer/footer-theme';
 @use './app/shared/components/navbar/navbar-theme';
@@ -67,6 +68,7 @@
   @include not-found-theme.theme($theme);
   @include workshop-sidenav.theme($theme);
   @include workshop-editor.theme($theme);
+  @include chat.theme($theme);
 
   @include footer-theme.theme($theme);
   @include navbar-theme.theme($theme);
