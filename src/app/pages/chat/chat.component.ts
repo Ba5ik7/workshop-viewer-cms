@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { NavigationService } from 'src/app/shared/services/navigation/navigation.service';
-import { ChatService } from './chat.service';
+import { ChatAppData, ChatService } from './chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -10,17 +11,13 @@ import { ChatService } from './chat.service';
 export class ChatComponent implements OnInit {
 
   user = '';
+  chatAppData$!: Observable<ChatAppData>;
 
   constructor(navigationService: NavigationService, private chatService: ChatService) {
     navigationService.sectionRouteSub.next('chat');
   }
 
   ngOnInit(): void {
-  }
-
-  connect() {
-    if (this.user) {
-      this.chatService.connect(this.user);
-    }
+    this.chatAppData$ = this.chatService.getChatAppData();
   }
 }

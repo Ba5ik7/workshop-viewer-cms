@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 
 export interface Message {
@@ -27,7 +27,7 @@ export class ChatService {
 
   private client!: Socket;
   private connected$ = new BehaviorSubject(false);
-  private user$ = new BehaviorSubject('Admin');
+  private user$ = new BehaviorSubject('Ngx-Wesley');
   private rooms$ = new BehaviorSubject<string[]>([]);
   private activeRoom$ = new BehaviorSubject('General');
   private chatRoom$ = new BehaviorSubject<ChatRoom>({
@@ -37,27 +37,39 @@ export class ChatService {
 
   constructor() { 
     this.client = io('/chat', { autoConnect: true, path: '/api/socket.io' });
-    this.client.on('connect', () => {
-      console.log('connected');
-      
-      this.connected()
-    });
+    this.client.on('connect', () => this.connected());
   }
 
-  connect(user: string) {
-    if (this.client.connected) return
-    // this.client.connect();
+  getChatAppData(): Observable<ChatAppData> {
+    const data = combineLatest([
+      this.activeRoom$,
+      this.chatRoom$,
+      this.connected$,
+      this.rooms$,
+      this.user$,
+    ]).pipe(
+      map((value) => {
+        const [activeRoom, chatRoom, connected, rooms, user] = value;
+        return {
+          activeRoom,
+          chatRoom,
+          connected,
+          rooms,
+          user,
+        };
+      })
+    );
+    return data;
   }
 
-  // I know it's a void return function :()
   private connected(): void {
-    console.log('identify', this.user$.value);
-    
-    this.client.emit('identify', this.user$.value, (rooms: string[]) => {
-      console.log('rooms', rooms);
-      
-      this.rooms$.next(rooms);
-    });
+    this.client.emit('identify', this.user$.value, (rooms: string[]) => this.rooms$.next(rooms));
+    this.joinRoom(this.activeRoom$.value);
     this.connected$.next(true);
+  }
+
+  private joinRoom(room: string) {
+    const payload = { user: this.user$.value, room };
+    this.client.emit('joinRoom', payload, (chatRoom: ChatRoom) => this.chatRoom$.next(chatRoom));
   }
 }
