@@ -1,6 +1,27 @@
 <ng-container *ngIf="chatAppData$ | async as data">
-  <h1>Chat Rooms</h1>
-  <h2>Test</h2>
+
+  <div class="messages-panel">
+    <div class="messages">
+      <div *ngIf="data.chatRoom.messages.length > 0; else noMessages">
+        <ul>
+          <li *ngFor="let message of data.chatRoom.messages">
+            [{{ message.user }}]: {{ message.content }}
+          </li>
+        </ul>
+      </div>
+      <ng-template #noMessages><p>No messages in this room</p></ng-template>
+    </div>
+
+      <mat-form-field class="message sticky">
+        <mat-label>Message</mat-label>
+        <textarea matInput></textarea>
+        <button mat-fab color="accent" matSuffix>
+          <mat-icon>send</mat-icon>
+        </button>
+      </mat-form-field>
+
+  </div>
+
   <div class="rooms-list-panel">
     <div class="rooms">
       <mat-nav-list>
