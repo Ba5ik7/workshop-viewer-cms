@@ -38,6 +38,7 @@ export class ChatService {
   constructor() { 
     this.client = io('/chat', { autoConnect: true, path: '/api/socket.io' });
     this.client.on('connect', () => this.connected());
+    this.client.on('userJoined', (user: string) => this.userJoined(user));
   }
 
   getChatAppData(): Observable<ChatAppData> {
@@ -93,5 +94,16 @@ export class ChatService {
 
   private leaveRoom(room: string) {
     this.client.emit('leaveRoom', { user: this.user$.value, room });
+  }
+
+  private userJoined(user: string): void {
+    const chatRoom = this.chatRoom$.value;
+    if (chatRoom) {
+      chatRoom.users.push(user);
+      chatRoom.users.sort((a, b) => {
+        return a.toLowerCase() >= b.toLowerCase() ? 1 : -1;
+      });
+      this.chatRoom$.next(chatRoom);
+    }
   }
 }
