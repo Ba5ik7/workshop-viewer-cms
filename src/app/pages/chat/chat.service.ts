@@ -62,6 +62,17 @@ export class ChatService {
     return data;
   }
 
+  sendMessage(content: string) {
+    const message = {
+      user: this.user$.value,
+      content,
+    };
+    this.client.emit('messageToServer', {
+      room: this.activeRoom$.value,
+      message,
+    });
+  }
+
   private connected(): void {
     this.client.emit('identify', this.user$.value, (rooms: string[]) => this.rooms$.next(rooms));
     this.joinRoom(this.activeRoom$.value);

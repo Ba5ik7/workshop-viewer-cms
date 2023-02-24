@@ -10,6 +10,7 @@ import { ChatAppData, ChatService } from './chat.service';
 })
 export class ChatComponent implements OnInit {
 
+  message = '';
   user = '';
   chatAppData$!: Observable<ChatAppData>;
 
@@ -19,5 +20,12 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.chatAppData$ = this.chatService.getChatAppData();
+  }
+
+  sendMessage() {
+    if (this.message) {
+      this.chatService.sendMessage(this.message);
+      this.message = '';
+    }
   }
 }
