@@ -39,6 +39,8 @@ export class ChatService {
     this.client = io('/chat', { autoConnect: true, path: '/api/socket.io' });
     this.client.on('connect', () => this.connected());
     this.client.on('userJoined', (user: string) => this.userJoined(user));
+    this.client.on('messageToClient', (message: Message) => this.messageToClient(message));
+    
   }
 
   getChatAppData(): Observable<ChatAppData> {
@@ -103,6 +105,14 @@ export class ChatService {
       chatRoom.users.sort((a, b) => {
         return a.toLowerCase() >= b.toLowerCase() ? 1 : -1;
       });
+      this.chatRoom$.next(chatRoom);
+    }
+  }
+
+  private messageToClient(message: Message): void {
+    const chatRoom = this.chatRoom$.value;
+    if (chatRoom) {
+      chatRoom.messages.push(message);
       this.chatRoom$.next(chatRoom);
     }
   }
