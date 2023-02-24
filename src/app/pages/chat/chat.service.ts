@@ -73,6 +73,13 @@ export class ChatService {
     });
   }
 
+  switchRoom(room: string) {
+    const activeRoom = this.activeRoom$.value;
+    this.leaveRoom(activeRoom);
+    this.joinRoom(room);
+    this.activeRoom$.next(room);
+  }
+
   private connected(): void {
     this.client.emit('identify', this.user$.value, (rooms: string[]) => this.rooms$.next(rooms));
     this.joinRoom(this.activeRoom$.value);
@@ -82,5 +89,9 @@ export class ChatService {
   private joinRoom(room: string) {
     const payload = { user: this.user$.value, room };
     this.client.emit('joinRoom', payload, (chatRoom: ChatRoom) => this.chatRoom$.next(chatRoom));
+  }
+
+  private leaveRoom(room: string) {
+    this.client.emit('leaveRoom', { user: this.user$.value, room });
   }
 }

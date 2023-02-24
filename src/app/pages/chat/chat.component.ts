@@ -22,6 +22,10 @@ export class ChatComponent implements OnInit {
     this.chatAppData$ = this.chatService.getChatAppData();
   }
 
+  switchRoom(room: string) {
+    this.chatService.switchRoom(room);
+  }
+
   sendMessage() {
     if (this.message) {
       this.chatService.sendMessage(this.message);

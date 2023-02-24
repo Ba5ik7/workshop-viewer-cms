@@ -14,7 +14,9 @@
 
       <mat-form-field class="message sticky" color="accent">
         <mat-label>Message</mat-label>
-        <textarea matInput color="accent"></textarea>
+        <textarea matInput color="accent"
+          [(ngModel)]="message"
+          (keyup.enter)="sendMessage()"></textarea>
         <button mat-fab color="accent" matSuffix>
           <mat-icon>send</mat-icon>
         </button>
@@ -28,6 +30,7 @@
         <a mat-list-item>Rooms</a>
         <mat-divider></mat-divider>
         <a mat-list-item *ngFor="let room of data.rooms"
+          (click)="switchRoom(room)"
           [routerLink]="'../' + room"
           routerLinkActive="workshop-menu-nav-item-selected">
           <!-- <mat-icon class="create-icon">note_add</mat-icon> -->
