@@ -14,10 +14,10 @@
 
       <mat-form-field class="message sticky" color="accent">
         <mat-label>Message</mat-label>
-        <textarea matInput color="accent"
+        <input matInput color="accent"
           [(ngModel)]="message"
-          (keyup.enter)="sendMessage()"></textarea>
-        <button mat-fab color="accent" matSuffix>
+          (keyup.enter)="sendMessage()" />
+        <button mat-mini-fab color="accent" matSuffix>
           <mat-icon>send</mat-icon>
         </button>
       </mat-form-field>
