@@ -18,7 +18,7 @@ export class AuthService {
   signInFormSuccess$ = this.signInFormSuccessSubject.asObservable();
 
   signIn(user: IUser) {
-    this.httpClient.post<Object>('/api/auth/local/login', user)
+    this.httpClient.post<Object>('/api/authentication/sign-in', user)
     .subscribe({
       next: (token) => this.signInFormSuccessSubject.next(token),
       error: (httpError: HttpErrorResponse) => this.signInFormErrorSubject.next(httpError.status)
@@ -26,6 +26,6 @@ export class AuthService {
   }
 
   isLoggedIn(): Observable<boolean> {
-    return this.httpClient.get<boolean>('/api/auth/is-logged-in');
+    return this.httpClient.get<boolean>('/api/authentication/logged-in');
   }
 }
