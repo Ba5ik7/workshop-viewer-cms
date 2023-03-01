@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { Subject, take, takeUntil } from 'rxjs';
 import { Category } from 'src/app/shared/interfaces/category.interface';
 import { NavigationService } from 'src/app/shared/services/navigation/navigation.service';

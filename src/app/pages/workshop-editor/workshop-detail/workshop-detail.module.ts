@@ -5,7 +5,7 @@ import { WorkshopViewerModule } from 'src/app/shared/components/workshop-viewer/
 import { RouterModule } from '@angular/router';
 import { WorkshopDetailRoutingModule } from './workshop-detail-routing.module';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatLegacyPaginatorModule as MatPaginatorModule } from '@angular/material/legacy-paginator';
 
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { CreateSectionModalComponent } from './create-section-modal/create-section-modal.component';
 import { DeleteSectionModalComponent } from './delete-section-modal/delete-section-modal.component';
 

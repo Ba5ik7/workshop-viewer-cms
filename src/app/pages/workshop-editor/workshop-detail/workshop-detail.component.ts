@@ -1,5 +1,5 @@
 import { Component, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatLegacyPaginator as MatPaginator, LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, of, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { Category } from 'src/app/shared/interfaces/category.interface';
