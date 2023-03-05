@@ -26,6 +26,6 @@ export class AuthService {
   }
 
   isLoggedIn(): Observable<boolean> {
-    return this.httpClient.get<boolean>('/api/authentication/logged-in');
+    return this.httpClient.get<boolean>('/api/authentication/is-user-logged-in');
   }
 }
